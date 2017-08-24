@@ -37,6 +37,9 @@ JVM consists of :
     - PC Register : Stores address of thread. One per thread.
     - Native Method Stack : One per thread
     
-3. Execution Engine
+3. Execution Engine : Consists of
+    - Interpreter
+    - Just In Time Compiler ( JIT )
+    - Garbage Collector
 4. JNI
 5. Native Method libraries
