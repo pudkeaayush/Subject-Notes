@@ -1,0 +1,12 @@
+Naming Convetion : 
+Java follows CamelCase naming convention. Naming conventions vary according to different requirements :
+1. Classes and Intefaces: Nouns in mixedCase with the first character capitalized and the first letter of every internal word capitalized.
+Eg: HelloWorld
+2. Methods : Verbs with first letter in small case and the internal first word of every subsequent word capitalized.
+Eg: sayHello()
+3. Variables : Small case. Cannot start with underscore or dollar sign.
+Eg: length
+4. Constant Variables : All in uppercase with words separated by underscore.
+Eg: STRING_LENGTH
+5. Packages : Eg: com.samsung.noida.framework
+
