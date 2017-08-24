@@ -144,7 +144,40 @@ for( int i = 0; i < 10; i++)
             break outer;
             
 
+Anonymous Objects in Java
+-----------------------------
+If an object is created but not assigned( i.e we do not hold a reference for the object), it is called an anonymous object.
+For instance Animal a = new Animal() vs new Animal(). The latter is an anonymous object. Used generally for immediate method calling.
 
+Different ways of creating an object in Java
+-------------------------------------------------
+1. Using new keyword
+2. Using clone method
+3. Using Class.forName(String className) methodd
+4. Using deserialization
 
+To call the method associated with any object, we have to create an object. We cannot call the method just by using the reference.
+Thus for instance if an Animal class has a method called runs(), to call it we have to create an object of Animal and call as shown.
+Animal a = new Animal();
+a.runs()
+If instead we would do the following, we will get compiler error.
+Animal a;
+a.runs();
+
+If we want to swap two class objects but do not know the members of another class, then we can create a wrapper class and swap.
+
+Class Car {
+    int name;
+    Car( String name)
+        this.name = name;
+}
+
+Class CarWrapper {
+    Car c;
+    CarWrapper (Car c )
+        this.c = c;
+}
+
+swap(c1 , c2) will help to swap the two car objects provided c1 and c2 are of type CarWrapper. If they are of type Car, cannot swap.
 
 
