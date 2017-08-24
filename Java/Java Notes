@@ -30,6 +30,14 @@ JVM consists of :
     - Loading
     - Linking
     - Initialization : Initializes static variables and static blocks
+    
+    Types of Class Loader :
+    a. Bootstrap class loader : Eg: String.class.getClassLoader() will return null as String class is loaded by Bootstrap class
+                                loader and bootstrap class loader is not a java object.
+    b. Extension class loader
+    c. System / Application class loader : Eg: MyCustomClass.class.getClassLoader() will print something like : sun.misc.Launcher$AppClassLoader@73d16e93
+    as the Custom class is loaded by Application class loader.
+    
 2. JVM Area : Includes
     - Method Area : One Method Area per JVM
     - Heap Area : One Heap Area per JVM
@@ -43,3 +51,11 @@ JVM consists of :
     - Garbage Collector
 4. JNI
 5. Native Method libraries
+
+JDK : JRE + Development Tools
+JRE : JVM + Library Classes( Eg: RMI , Collections, JNI and so on)
+
+FileName and ClassName should be same only when the class is Public. Else it does not need to be same.
+
+import keyword can only be used to import from the classpath( director ). Outside the classpath import keyword cannot be used. 
+-cp build option can be used while compiling and executing program to import from another classpath. 
