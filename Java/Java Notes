@@ -1,3 +1,5 @@
+/* Notes have been assembled from Geeksforgeeks and various other stackoverflow links*/.
+
 Naming Convetion : 
 Java follows CamelCase naming convention. Naming conventions vary according to different requirements :
 1. Classes and Intefaces: Nouns in mixedCase with the first character capitalized and the first letter of every internal word capitalized.
@@ -10,3 +12,31 @@ Eg: length
 Eg: STRING_LENGTH
 5. Packages : Eg: com.samsung.noida.framework
 
+What exactly does public static void main(String[] args) signify?
+public : JVM can call the public method from anywhere.
+static : Main method is called without any object.
+void : Does not return anything.
+main : Method name chosen by JVM
+String[] : The main method takes in an array of String objects as the argument.
+
+System.out.println() => System : Class    out : variable of type output stream    println() : method
+
+The code is first compiled using javac which creates a bytecode version of the program. Then the JVM is called to execute the 
+bytecode using java command.
+
+The main method as we saw, was run by JVM. JVM is a part of JRE( Java RunTime Enviornment). 
+JVM consists of :
+1. Class loader : Responsible for
+    - Loading
+    - Linking
+    - Initialization : Initializes static variables and static blocks
+2. JVM Area : Includes
+    - Method Area : One Method Area per JVM
+    - Heap Area : One Heap Area per JVM
+    - Stack area : Single stack corresponding to each thread.
+    - PC Register : Stores address of thread. One per thread.
+    - Native Method Stack : One per thread
+    
+3. Execution Engine
+4. JNI
+5. Native Method libraries
