@@ -59,3 +59,92 @@ FileName and ClassName should be same only when the class is Public. Else it doe
 
 import keyword can only be used to import from the classpath( director ). Outside the classpath import keyword cannot be used. 
 -cp build option can be used while compiling and executing program to import from another classpath. 
+
+Identifiers : Class Name , Method Name , Variable Names or a label.
+Java is a statically typed language as opposed to say Python. Thus in Java we have to first declare an integer to assign an integer 
+to it unlike in Python.
+
+By default fraction values are double in java. To use instead float, add f at the end.
+8 primitive data types in Java : boolean , byte , char , float , long , int , float , double
+
+Enum stand for enumerated data types. 
+enum Color {
+    RED , GREEN , BLACK;
+}
+is internally represented as : 
+Class Color {
+    private static final Color RED = new Color();
+    private static final Color GREEN = new Color();
+    private static final Color BLACK = new Color();
+}
+Every enum constant is always public static final.
+Enums cannot extend any other class as they extend java.lang.ENUM class. Some methods available are:
+values() , ordinal(), valueOf().
+
+There are 3 types of variables in Java.
+1. Local Variables : Inside a method/block/constructor
+2. Instance variables : Non static variables and declared in a class outside any method, block or constructor.
+                        One instance per each object.
+3. Static Variables : Also called Class Variables. One instance per class.
+
+class MyClass {
+    static int val1; // Static variable
+    int val2;       // Instance variable
+ }
+
+Static local variables are not allowed in Java. So for instance if there is a method called :
+void sayHello() {
+    static int a;
+}
+Above code generates an error.
+
+Acess Modifiers
+---------------------------
+
+Acess Modifiers               Public      Protected       Default         Private
+Inside the class                Yes         Yes             Yes             Yes
+Subclass inside the package     Yes         Yes             Yes             No
+Subclass outside the package    Yes         Yes             No              No
+World                           Yes         No              No              No  
+
+while loop is an entry controlled loop as opposed to do-while which is an exit controlled loop.
+switch statement can take a string as opposed to an integer( from JDK 7 ). Hence a code like below works:
+public static void tryFunc( String s) {
+        switch(s)
+        {
+            case "Hello" :
+                System.out.println("elective courses : Advance english, Algebra");
+                break;
+            default:
+                System.out.println("no match");
+        }
+    }
+    
+ Forward declaration is not necessary in Java. Hence a method can be called before it is defined.
+ 
+ Widening primitve conversion happens only when there is '+' operator.
+ Thus System.out.print("A" + "B" + 'C') prints ABC.
+ System.out.println('A' + 'B' + "C") prints 131C.
+ 
+ Type conversion in Java
+ -------------------
+Widening Or Automatic Type conversion :  Byte - > Short - > Int - > Long -> Float - > Double
+Narrowing or explicit conversion ( Need to typecast ) : From any bigger one to a smaller one.
+If integer is converted to byte, gives result as %256.
+
+Type Promotion : If there is an expression that we are trying to evaluate and it contains an operand of higher one, it is converted 
+into one of higher one. Example : integer * float will give float.
+
+Java does not support goto. However, it does support label which is inserted just before a loop. Can break there.
+
+outer:
+for( int i = 0; i < 10; i++)
+    for( int j = 0; j < 5; j++)
+        if( j == 1)
+            break outer;
+            
+
+
+
+
+
