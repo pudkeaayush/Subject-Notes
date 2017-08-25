@@ -180,4 +180,7 @@ Class CarWrapper {
 
 swap(c1 , c2) will help to swap the two car objects provided c1 and c2 are of type CarWrapper. If they are of type Car, cannot swap.
 
-
+Inheritance
+--------------
+In Java, grandparent's members cannot be directly accessed using super.super call. Instead, the child can call the parent class' method
+which in turn needs to call the grandparent's method using super.
