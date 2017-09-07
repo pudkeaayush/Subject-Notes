@@ -107,6 +107,8 @@ Subclass inside the package     Yes         Yes             Yes             No
 Subclass outside the package    Yes         Yes             No              No
 World                           Yes         No              No              No  
 
+Default has Package level access.
+
 while loop is an entry controlled loop as opposed to do-while which is an exit controlled loop.
 switch statement can take a string as opposed to an integer( from JDK 7 ). Hence a code like below works:
 public static void tryFunc( String s) {
@@ -197,6 +199,43 @@ Advantages :
 - Reusability
 - Unit testing is easier 
 
+Dynamic Method Dispatch or Runtime Polymorphism
+-------------------------------------------------
+No runtime polymorphism possible for data members.
 
+class A {
+    int x = 10;
+}
+class B extends A {
+    int x = 20;
+}
+int main() {
+    A a = new B();
+    System.out.println(a.x);    // Prints 10 as variables are not overriden
+}
 
+Superclass reference variable can be used to refer to subclass.
+Example if A is the superclass and B extends A then,
+A a = new B() can be used to call B's method.
+
+Association vs Composition vs Aggregation
+-------------------------------------------
+Association : Relationship between 2 different classes established through their objects.
+Can be one to one , one to many , many to one or many to many.
+Aggregation and Composition are the two types of association.
+
+              Aggregation                                                       Composition
+      ------------------------------------------------------------------------------------------------------
+           Has A relationship                                                Part of relationship
+           Unidirectional                                                       Bidirectional
+    Both entries can survive individually                                   Entries cannot surivive individually
+    Eg: Institute has departments. Departments have students   
+    Eg: Libraries can have number of books. If library gets destroyed, so do books.
+    
+    Can have a list of books in Library.
+    
+Non access modifier or specifiers in Java are : static , final , transient , abstract , synchronized , transient, volatile and native.
+
+    
+    
 
