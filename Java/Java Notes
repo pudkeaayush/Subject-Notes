@@ -184,3 +184,19 @@ Inheritance
 --------------
 In Java, grandparent's members cannot be directly accessed using super.super call. Instead, the child can call the parent class' method
 which in turn needs to call the grandparent's method using super.
+Constructors are not members and hence are not inherited by subclasses. But the constructor of the superclass can be invoked from the
+subclass. Private members can only be accessed of superclass by public or protected setter and getter options.
+
+Encapsultion( Data hiding )
+-------------
+Protective shield that shields the data from being accessed by code outside the shield.
+Achieved by declaring private variables and using setters and getters( public methods) to access them.
+Advantages :
+- data hiding
+- can give only read access or write access
+- Reusability
+- Unit testing is easier 
+
+
+
+
