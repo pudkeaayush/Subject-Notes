@@ -1,4 +1,4 @@
-/* Notes have been assembled from Geeksforgeeks and various other stackoverflow links*/.
+/* Notes have been assembled from Geeksforgeeks and various other stackoverflow links. Used only for self study*/.
 
 Naming Convetion : 
 Java follows CamelCase naming convention. Naming conventions vary according to different requirements :
@@ -316,4 +316,83 @@ Multilevel method overriding is possible in Java.
 Covariant Return type : Possible to have different return type for an overriding method in base class and child class. However, child
 class return type should be sub-type of parent's return type.
 
+Object class in Java has the following methods :
+1. toString() : Called when we try to print any object reference.
+        HelloWorld hello = new HelloWorld();
+        System.out.println(hello.toString()); // Prints HelloWorld@2a139a55
+If instead we had overridden toString() method, we would have printed whatever toString() method returned.
+        public String toString() {
+            return "Hello"; // Would instead print Hello when we print the object reference
+        } 
+       
+2. hashCode() : As can be seen from the previous example, HelloWorld@2a139a55 is printed on printing hello object.
+If we want to assign our own unique hashcode value to the object we can do so.
+     @Override
+    public int hashCode()
+    {
+        return roll_no;     // As a roll number is generally unique for a student , can be used as a hashcode.
+    }
+ 
+3. equals() : Compares given object to this object.
+For instance below code will always print "Not equal" if we do not override equals method.
+        HelloWorld c1 = new HelloWorld(10, 15);
+        HelloWorld c2 = new HelloWorld(10, 15);
+        if (c1.equals(c2)) {
+            System.out.println("Equal ");
+        } else {
+            System.out.println("Not Equal ");
+        }
+If however, we want to compare the two objects and their values, we can use equals method and define our own implementation.
+When we override equals method , always recommended to override hashCode() method too. 
+
+4. getClass()
+        Object obj = new String("GeeksForGeeks");
+        Class c = obj.getClass();
+        System.out.println("Class of Object obj is : "      // Prints       Class of Object obj is : java.lang.String
+                           + c.getName());
+5. finalize() : Used to free up resources, destroy references( garbage collection ).
+6. clone()
+7. notify()
+8. notifyAll()
+
+Object class can be used to assign any data type( like in Python).
+Thus following are all valid :
+Object str = "Hello";
+Object myInt = 10;
+Object myFloat = 10.45;
+
+Initializer block contains code that is always executed when an instance is created. Thus used to declare the common parts of various
+constructors of a class.
+
+class A {
+    {
+        System.out.println("Class A");
+    }
+    A() {
+        System.out.println("Class A without arguments");
+    }
+    A( int a ) {
+        System.out.println("Class A with arguments");
+    }
+}
+
+Now when we call A object's constructor, Class A would be printed in both cases, with argument and without argument.
+
+If a class B extends Class A and we create a new object of type class B , then the constructor of Class A is also called.
+
+                Static Binding                                                           Dynamic Binding
+----------------------------------------------------------------------------------------------------------------------------------
+private, static and final members( methods and variables )                  virtual methods( methods are virtual by default)
+     Uses type information for binding                                                 Uses object information for binding
+    Eg: Overloaded methods                                                              Eg: Overridden method
+    
+Autoboxing : Autoboxing is the automatic conversion that Java makes between Primitive types and their corresponding Object Wrapper class.
+List<Integer> li = new ArrayList<>();
+for (int i = 1; i < 50; i += 2)
+    li.add(i);
+In the above code snippet, integer primitive is convert into Wrapper class.
+Unboxing : Converting from wrapper class back to primitive type.  Eg : int absVal = absoluteValue(i); where i is of type Integer
+
+Java is not a fully Object Oriented language like Smalltalk because there are primitive type supports, static keyword means that 
+object is not required to call methods and Wrapper class provide autoboxing and unboxing.
 
