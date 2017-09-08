@@ -396,3 +396,36 @@ Unboxing : Converting from wrapper class back to primitive type.  Eg : int absVa
 Java is not a fully Object Oriented language like Smalltalk because there are primitive type supports, static keyword means that 
 object is not required to call methods and Wrapper class provide autoboxing and unboxing.
 
+
+Abstract Classes and Interfaces:
+------------------------------------------
+Interfaces are useful when we do not know anything about the implementation but know the contract that the implementer 
+should have to accomplish the task.
+Abstract classes are useful when we know partial implementation , say 3 out of 5 methods.
+
+Since Java 8, interfaces can have default and static methods.
+Abstract classes can have non final variables whereas in interfaces variables are by default public, final and static.
+
+Suppose we need to add a new method into an existing interface. We could not do it prior to Java 8. Now however, we can
+add a default method meaning other classes that implement it do not need to implement it.
+
+Static methods can be added in interfaces which can be called independently without an object.
+interface in1
+{
+    final int a = 10;
+    static void display()
+    {
+        System.out.println("hello");
+    }
+}
+ 
+// A class that implements interface.
+class testClass implements in1
+{
+    // Driver Code
+    public static void main (String[] args)
+    {
+        in1.display();  // Prints hello
+    }
+}
+
