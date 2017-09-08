@@ -407,7 +407,7 @@ Since Java 8, interfaces can have default and static methods.
 Abstract classes can have non final variables whereas in interfaces variables are by default public, final and static.
 
 Suppose we need to add a new method into an existing interface. We could not do it prior to Java 8. Now however, we can
-add a default method meaning other classes that implement it do not need to implement it.
+add a default method meaning other classes that implement it do not need to implement it. Thus forward compatibility.
 
 Static methods can be added in interfaces which can be called independently without an object.
 interface in1
@@ -428,4 +428,78 @@ class testClass implements in1
         in1.display();  // Prints hello
     }
 }
+
+An interface can extend another interface but only one. All methods in interface are public and abstract. All field are
+public , static and final.
+Eg: 
+interface A {
+    int a;  // Will generate a compile time error since variables are public , static and final by default and final variables need to be declared.
+}
+
+We cannot declare class or interface with private or protected access specifier. Nested interfaces and classes can have all access specifiers.
+
+Abstract classes
+-----------------------
+1. Instance of abstract class cannot be created, they can be referenced though.
+2. An abstract class can have constructors. Constructor of abstract class is called when instance of the class inherting the abstract
+class is created.
+3. Abstract class can be created without any abstract methods. This allows us to create classes that cannot be instantiated but inherited.
+4. Abstract class can also have final methods which means class inherting from it, cannot override the function.
+
+Comparator interface
+----------------------
+Comparator interface is used to order objects of user defined types.
+
+Nested interfaces can be accessed as follows:
+
+class A {
+    interface AA {
+        void printMethod();
+    }
+}
+
+class B implements A.AA {
+    public void printMethod() {
+        System.out.println("Nested interface");
+    }
+}
+
+Now we can call as follows:
+A.AA aObject;
+B bObject = new B();
+aObject = bObject;
+aObject.show();
+
+Nested Classes 
+-----------------------
+Increases encapsulation. The scope of nested class is only within that class.
+Nested classes can either be :
+1. Static Nested Class
+2. Non static nested class
+    a. Local Inner class
+    b. Anonymous Inner class
+    
+ If say we have an OuterClass and it contains a static inner class called StaticNestedClass, then we can call the method display
+ inside the inner class as follows :
+ // accessing a static nested class
+ OuterClass.StaticNestedClass nestedObject = new OuterClass.StaticNestedClass();
+ nestedObject.display();
+
+Static nested class do not have access to other members( non static variables and methods) of the enclosing class as it has to access
+it through an object.
+Non static nested class( inner classes) have access to all members.
+
+Declaring a Local Inner class: A local inner class can be declared within a block. This block can be either a method body, 
+initialization block, for loop or even an if statement.
+
+Anonymous Inner Class : No name. Only a single object is created for it.
+Eg: Age a1 = new Age() {
+    public void getAge() {
+        System.out.println("Age is " + age);   
+     }
+}
+
+Functional Interface: An interface that contains only abstract method is called functional interface. Eg: Runnable , ActionListener,
+Comparable
+
 
