@@ -276,3 +276,44 @@ class A {
         a.print();  // Generates compiler error as method overloading must have different parameters. Can't overload based on return type
     }
 }
+
+Below code generates compiler error as methods that throw different exceptions are not overloaded.
+public int print(String data) throws IOException {
+    return 0;
+}
+public int print(String data) throws Exception {
+    return 1;
+}
+
+Run Time Polymorphism : Type of object being referred to( not the reference type ) that determines which version of an overridden method
+will be called.
+Rules for overriding
+-------------------------------------
+1. The overriding method can allow more but not less than access than the overridden method. For instance, protected method
+after being overridden cannot be made private but can be made public.
+2. Final methods cannot be overridden.
+3. Static methods cannot be overridden.
+4. Private methods cannot be overridden.
+5. Overriding methods must have same return type( or subtype : also called covariant return )
+6. Overridden method can be invoked using the super keyword.
+7. We cannot override constructor.
+8. Overriding and Exceptions
+    a. If the super class overridden method does not throw an exception, subclass overriding method can only throw unchecked
+    exception. If it throws checked exception, it will lead to compile time error.
+    Eg : void print() method in Parent when overridden, if it throws an exception say void print() throws ArithmenticException is ok as
+    it is an unchecked exception. If however, it throws 'Exception', we get a compile time error.
+    
+    b. If the super class does throw an exception, then subclass one can throw same or subclass exception. Throwing parent exception will
+    lead to compile time error.
+    For instance if void print() throws RunTimeException in parent and subclass is void print() throws Exception we get an error.
+
+9. Abstract methods in an interface or abstract class are meant to be overridden.
+10. The presence of synchronized/stricfp modifier with method has no effect on overriding rules.
+
+In C++, we need virtual keyword to achieve overriding. In Java, methods are virtual by default.
+Multilevel method overriding is possible in Java.
+
+Covariant Return type : Possible to have different return type for an overriding method in base class and child class. However, child
+class return type should be sub-type of parent's return type.
+
+
