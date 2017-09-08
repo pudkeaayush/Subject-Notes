@@ -236,6 +236,43 @@ Aggregation and Composition are the two types of association.
     
 Non access modifier or specifiers in Java are : static , final , transient , abstract , synchronized , transient, volatile and native.
 
-    
-    
+Overloading : Compile Time or static Polymorphism
+Overloading : Different parameters or type of parameters. Cannot overload according to return type.
 
+If the base class overrides the static function of base class, there is no run time polymorphism as the base class method
+won't be called.
+Eg: class Base {
+    public static void print() {
+        System.out.println("base class");
+    }
+}
+class Derived extends Base { 
+    public static void print() {
+        System.out.println("Derived class");
+    }
+}
+
+Base b1 = new Derived();
+b1.print(); // Prints base class as static methods won't be overriden
+
+For class or static variables the call is decided at compiled time based on the type of reference.
+For non class or instance variables, the call is decided at run time based on 
+    
+User defined operator overloading is not allowed in Java. Java internally overloads operators. For instance, + for concatenation.
+Overriding - Run Time and Overloading - Compile Time
+Methods that throw different exceptions are still not overloaded as they still have same signatures.
+
+class A {
+    public int print() {
+        System.out.println("print1");
+        return 0;
+    }
+    public long print() {
+        System.out.println("print2");
+        return 1;
+    }
+    public static void main(String[] args ) {
+        A a = new A();
+        a.print();  // Generates compiler error as method overloading must have different parameters. Can't overload based on return type
+    }
+}
