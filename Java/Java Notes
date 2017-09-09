@@ -446,6 +446,7 @@ class is created.
 3. Abstract class can be created without any abstract methods. This allows us to create classes that cannot be instantiated but inherited.
 4. Abstract class can also have final methods which means class inherting from it, cannot override the function.
 
+Abstract classes do not have constructors. An instance of interface cannot be created and final methods cannot be overridden.
 Comparator interface
 ----------------------
 Comparator interface is used to order objects of user defined types.
@@ -502,4 +503,37 @@ Eg: Age a1 = new Age() {
 Functional Interface: An interface that contains only abstract method is called functional interface. Eg: Runnable , ActionListener,
 Comparable
 
+Marker Interface : It is an empty interface with no fields or methods. Eg: Clonnable , Serializable and Remote Intefaces.
+Why use marker interface when it has nothing?
+In earlier versions of Java, Marker Interfaces were the only way to declare metadata about a class. For example, the Serializable Marker Interface 
+lets the author of a class say that their class will behave correctly when serialized and deserialized.
+In modern Java, marker interfaces have no place. They can be completely replaced by Annotations, which allow for a very flexible metadata capability.
 
+Important Java packages are java.io , java.util and java.lang.
+
+MultiThreading in Java
+-------------------------------
+Multithreading : Concurrent execution of two or more parts of a program for concurrent execution.
+Threads can be created in two wasy:
+1. Extending the Thread class
+2. Implementing the Runnable interface
+
+class A extends Thread {
+    public void run() {
+    
+    }
+}
+A a = new A();
+A.start();
+
+class A implements Runnable {
+    public void run() {
+    
+    }
+
+}
+Thread A = new Thread(new A());
+A.start()
+
+If we extend Thread class , we cannot extend any other class. However, we can achieve basic functionality of a thread by 
+extending Thread class because it provides basic functionalities like yield(), interrupt() etc.
