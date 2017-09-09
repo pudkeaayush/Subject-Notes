@@ -537,3 +537,46 @@ A.start()
 
 If we extend Thread class , we cannot extend any other class. However, we can achieve basic functionality of a thread by 
 extending Thread class because it provides basic functionalities like yield(), interrupt() etc.
+
+Main Thread : Main thread is created automatically when our program is started. We can use Thread.currentThread() to get
+reference of this thread once the program starts.
+A main thread can enter deadlock by using the join method.
+Thread.currentThread.join() causes a deadlock as the main thread is waiting for itself to die.
+
+We can prevent the execution of a thread by the following methods:
+1. yield() : If suppose 3 threads are there such that one takes 5 hours and the other takes only 5 mins to execute, the second
+will have to wait 5 hours to just finish 5 mins of work. In such case, yield method can be used to run the more important thread.
+By calling the yield method, the thread is saying to the scheduler that it is ready to pause its execution. The thread scheduler
+can ignore or it can give the processor to a thread with higher priority.
+The thread which runs the yield method will run into Runnable() state from the Running state. 
+The underlying platform must provide support for preemptive scheduling if we are using the yield method.
+
+2. sleep() : Current thread sleeps for the specified time
+
+yield() vs sleep()
+yield:() indicates that the thread is not doing anything particularly important and if any other threads or processes need to be run, they can. Otherwise, the current thread will continue to run.
+sleep(): causes the thread to definitely stop executing for a given amount of time; if no other thread or process needs to be run, the CPU will be idle (and probably enter a power saving mode).
+
+3. join (): If joint() is called on a Thread instance, the currently running thread will be blocked until the Thread instance has finished executing.
+
+Thread t1 = new Thread(new EventThread("e1"));
+t1.start();
+Thread e2 = new Thread(new EventThread("e2"));
+t2.start();
+
+while (true) {
+    try {
+        t1.join(); // 1
+        t2.join(); // 2  These lines (1,2) are in in public static void main
+        break;
+    }
+}
+t1.join() means, t1 says something like "I want to finish first". Same is the case with t2. No matter who started t1 or t2 thread (in this case the main method), main will wait until t1 and t2 finish their task.
+However, an important point to note down, t1 and t2 themselves can run in parallel irrespective of the join call sequence on t1 and t2. It is the main/daemon thread that has to wait.
+
+=> join will stop the current thread until the thread being called with join() is done executing.
+=> interrupt will interrupt the thread it is being called on, causing InterruptedException.
+=> yield allows a context switch to other threads, so this thread will not consume the entire CPU usage of the process.
+
+If we say thread.sleep(1000), that thread will sleep for 1000 milliseconds for sure, whereas with yield() there is no such guarantee. 
+This is useful for thread scheduling, since the thread which calls yield() may very well selected immediately again for running.
