@@ -744,3 +744,47 @@ CyclicBarrier : CyclicBarrier is used when multiple thread carry out different s
 Once all the threads have reached, the barriers then give the way for threads to proceed.
 nce the number of threads that called await() equals numberOfThreads, the barrier then gives a way for the waiting threads.
 
+Difference between a CyclicBarrier and a CountDownLatch
+A CountDownLatch can be used only once in a program(until it’s count reaches 0).
+A CyclicBarrier can be used again and again once all the threads in a barriers is released.
+
+Callable vs Runnable : One feature lacking in  Runnable is that we cannot make a thread return result when it terminates, i.e. when run() completes. For supporting this feature, the Callable interface is present in Java.
+
+For implementing Runnable, the run() method needs to be implemented which does not return anything, while for a Callable, the call() method needs to be implemented which returns a result on completion. Note that a thread can’t be created with a Callable, it can only be created with a Runnable.
+Another difference is that the call() method can throw an exception whereas run() cannot.
+
+To create the thread, a Runnable is required. To obtain the result, a Future is required.
+
+The Java library has the concrete type FutureTask, which implements Runnable and Future, combining both functionality conveniently.
+A FutureTask can be created by providing its constructor with a Callable
+
+String vs StringBuilder vs StringBuffer
+-----------------------------------------------
+Objects of String are immutable, and objects of StringBuffer and StringBuilder are mutable.
+StringBuffer and StringBuilder are similar, but StringBuilder is faster and preferred over StringBuffer for single threaded program. 
+If thread safety is needed, then StringBuffer is used.
+
+Why are Strings immutable in Java?
+String is Immutable in Java because String objects are cached in String pool. Since cached String literals are shared between multiple 
+clients there is always a risk, where one client's action would affect all another client.
+Security: parameters are typically represented as String in network connections, database connection urls, usernames/passwords etc. If it were mutable, these parameters could be easily changed.
+Synchronization and concurrency: making String immutable automatically makes them thread safe thereby solving the synchronization issues.
+Caching: when compiler optimizes your String objects, it sees that if two objects have same value (a="test", and b="test") and thus you need only one string object (for both a and b, these two will point to the same object).
+Class loading: String is used as arguments for class loading. If mutable, it could result in wrong class being loaded (because mutable objects change their state).
+
+Garbage Collection
+-------------------------
+Objective : Free heap memory by destroying unreachable objects.
+An object is said to be eligible for GC if it is unreachable.
+Ways for requesting Java to run GC
+1. System.gc()
+2. Runtime.getRunTime().gc()\
+
+finalize method : Just before freeing the memory, JVM calls finalize method for cleanup activities ( eg. closing database connectivity).
+
+Ways to make an object eligible for GC
+--------------------------------------------
+1. Object created inside a method
+2. Reassigning the reference variable.
+3. Nullifying the reference variable.
+4. Anonymous object
