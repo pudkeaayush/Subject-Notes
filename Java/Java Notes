@@ -753,6 +753,12 @@ Callable vs Runnable : One feature lacking in  Runnable is that we cannot make a
 For implementing Runnable, the run() method needs to be implemented which does not return anything, while for a Callable, the call() method needs to be implemented which returns a result on completion. Note that a thread can’t be created with a Callable, it can only be created with a Runnable.
 Another difference is that the call() method can throw an exception whereas run() cannot.
 
+Mark and Sweep : Garbage collection algorithm
+2 steps:
+1. Be able to detect all the unreachable objects
+2. Reclaim the memory heap space used by the garbage objects.
+
+
 To create the thread, a Runnable is required. To obtain the result, a Future is required.
 
 The Java library has the concrete type FutureTask, which implements Runnable and Future, combining both functionality conveniently.
@@ -788,3 +794,28 @@ Ways to make an object eligible for GC
 2. Reassigning the reference variable.
 3. Nullifying the reference variable.
 4. Anonymous object
+
+Mark and Sweep Algorithm : A garbage collection algorithm
+
+Mark(root)
+    If markedBit(root) = false then
+        markedBit(root) = true
+        For each v referenced by root       // Mark reachable nodes
+             Mark(v)
+
+Sweep()
+For each object p in heap
+    If markedBit(p) = true then
+        markedBit(p) = false
+    else
+        heap.release(p)
+
+Advantages of Mark and Sweep Algorithm
+--------------------------------------
+It handles the case with cyclic references, even in case of a cycle, this algorithm never ends up in an infinite loop.
+There are no additional overheads incurred during the execution of the algorithm.
+
+Disadvantages of Mark and Sweep Algorithm
+-------------------------------------------
+The main disadvantage of the mark-and-sweep approach is the fact that that normal program execution is suspended while the garbage collection algorithm runs.
+Other disadvantage is that, after the Mark and Sweep Algorithm is run several times on a program, reachable objects end up being separated by many, small unused memory regions.
