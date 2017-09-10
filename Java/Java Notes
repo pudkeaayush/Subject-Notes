@@ -715,3 +715,32 @@ If the semaphore’s count is greater than zero, then the thread acquires a perm
 Otherwise, the thread will be blocked until a permit can be acquired.
 When the thread no longer needs an access to the shared resource, it releases the permit, which causes the semaphore’s count to be incremented.
 If there is another thread waiting for a permit, then that thread will acquire a permit at that time
+
+CoundDownLatch enables you to make a thread wait till all other threads are done with their execution.
+
+Pseudo code can be:
+
+// Main thread starts
+// Create CountDownLatch for N threads
+// Create and start N threads
+// Main thread waits on latch
+// N threads completes there tasks are returns
+// Main thread resume execution
+
+Deadlock
+-----------------
+If threads are waiting for each other to finish, then the condition is known as Deadlock.
+Deadlock condition is a complex condition which occurs only in case of multiple threads.
+
+Daemon thread in Java
+------------------------------
+Daemon thread is a low priority thread that runs in background to perform tasks such as garbage collection.
+setDaemon() method is used to convert a user thread to daemon thread.
+
+Priority: When the only remaining threads in a process are daemon threads, the interpreter exits. This makes sense because when only daemon threads remain, there is no other thread for which a daemon thread can provide a service.
+Usage: Daemon thread is to provide services to user thread for background supporting task.
+
+CyclicBarrier : CyclicBarrier is used when multiple thread carry out different sub tasks and the output of these sub tasks need to be combined to form the final output. After completing its execution, threads call await() method and wait for other threads to reach the barrier.
+Once all the threads have reached, the barriers then give the way for threads to proceed.
+nce the number of threads that called await() equals numberOfThreads, the barrier then gives a way for the waiting threads.
+
