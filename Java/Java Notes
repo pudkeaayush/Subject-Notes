@@ -557,7 +557,7 @@ yield() vs sleep()
 yield:() indicates that the thread is not doing anything particularly important and if any other threads or processes need to be run, they can. Otherwise, the current thread will continue to run.
 sleep(): causes the thread to definitely stop executing for a given amount of time; if no other thread or process needs to be run, the CPU will be idle (and probably enter a power saving mode).
 
-3. join (): If joint() is called on a Thread instance, the currently running thread will be blocked until the Thread instance has finished executing.
+3. join (): If join() is called on a Thread instance, the currently running thread will be blocked until the Thread instance has finished executing.
 
 Thread t1 = new Thread(new EventThread("e1"));
 t1.start();
@@ -580,3 +580,96 @@ However, an important point to note down, t1 and t2 themselves can run in parall
 
 If we say thread.sleep(1000), that thread will sleep for 1000 milliseconds for sure, whereas with yield() there is no such guarantee. 
 This is useful for thread scheduling, since the thread which calls yield() may very well selected immediately again for running.
+
+Syncronized keyword is used so that only one thread can access shared resources at a time.
+// Only one thread can execute at a time. 
+// sync_object is a reference to an object
+// whose lock associates with the monitor. 
+// The code is said to be synchronized on
+// the monitor object
+synchronized(sync_object)
+{
+   // Access shared variables and other
+   // shared resources
+}
+
+Syncronization is achieved in Java using a concept of monitors. Only one thread can own a monitor at a time. All other threads
+attempting to enter the locked monitor will be suspended until the first thread exists the monitor.
+
+Inter thread communication
+----------------------------------
+Polling : Process of checking repeatedly till a condition becomes true is called polling.
+How does Java handle polling?
+1. Wait : Releases the lock on shared resources and waits till some other thread invokes notify
+2. Notify : Wakes up one single thread that called the wait on the same object.Calling notify does not give up resource
+3. Notifyall : Wakes up all threads that called wait on the same object.
+
+Notify vs notifyall
+---------------------
+If only one of the thread can do useful work( eg. acquire lock) , example in case of mutually exclusive lock, better to use notify
+instead of notifyAll.
+
+Why do we need start() method instead of directly running run() ?
+The purpose of start is to create a separate call stack for the thread. A separate call stack is created by it, and then run() 
+method is called.
+
+// Java code to see that all threads are
+// pushed on same stack if we use run()
+// instead of start().
+class ThreadTest extends Thread
+{
+  public void run()
+  {
+    try
+    {
+      // Displaying the thread that is running
+      System.out.println ("Thread " +
+                Thread.currentThread().getId() +
+                " is running");
+ 
+    }
+    catch (Exception e)
+    {
+      // Throwing an exception
+      System.out.println ("Exception is caught");
+    }
+  }
+}
+ 
+// Main Class
+public class Main
+{
+  public static void main(String[] args)
+  {
+    int n = 8;
+    for (int i=0; i<n; i++)
+    {
+      ThreadTest object = new ThreadTest();
+ 
+      // start() is replaced with run() for
+      // seeing the purpose of start
+      object.run();
+    }
+  }
+}
+
+The output with start() is :
+Thread 11 is running
+Thread 13 is running
+Thread 10 is running
+Thread 12 is running
+Thread 14 is running
+Thread 15 is running
+Thread 16 is running
+Thread 17 is running
+
+whereas output wtih run() is :
+Thread 1 is running
+Thread 1 is running
+Thread 1 is running
+Thread 1 is running
+Thread 1 is running
+Thread 1 is running
+Thread 1 is running
+Thread 1 is running
+
