@@ -239,7 +239,7 @@ Non access modifier or specifiers in Java are : static , final , transient , abs
 Overloading : Compile Time or static Polymorphism
 Overloading : Different parameters or type of parameters. Cannot overload according to return type.
 
-If the base class overrides the static function of base class, there is no run time polymorphism as the base class method
+If the derived class overrides the static function of base class, there is no run time polymorphism as the base class method
 won't be called.
 Eg: class Base {
     public static void print() {
@@ -255,8 +255,11 @@ class Derived extends Base {
 Base b1 = new Derived();
 b1.print(); // Prints base class as static methods won't be overriden
 
+The reason static methods cannot be overridden in Java is because method overriding only occurs in the context of dynamic( runtime)
+lookup of methods whereas static classes are looked up at compile time.
+
 For class or static variables the call is decided at compiled time based on the type of reference.
-For non class or instance variables, the call is decided at run time based on 
+For non class or instance variables, the call is decided at run time based on type of object.
     
 User defined operator overloading is not allowed in Java. Java internally overloads operators. For instance, + for concatenation.
 Overriding - Run Time and Overloading - Compile Time
@@ -315,6 +318,16 @@ Multilevel method overriding is possible in Java.
 
 Covariant Return type : Possible to have different return type for an overriding method in base class and child class. However, child
 class return type should be sub-type of parent's return type.
+
+class ShapeFactory {
+        public Shape newShape() {}
+}
+class CircleFactory extends ShapeFactory {
+        public Circle newShape() {}
+} 
+
+As can be seen from the above piece of code, newShape in ShapeFactory is returning Shape whereas newShape in CircleFactory is returning Circle.
+   
 
 Object class in Java has the following methods :
 1. toString() : Called when we try to print any object reference.
@@ -499,8 +512,9 @@ Eg: Age a1 = new Age() {
         System.out.println("Age is " + age);   
      }
 }
+When a local class is used only once, consider using Anonymous Inner class.
 
-Functional Interface: An interface that contains only abstract method is called functional interface. Eg: Runnable , ActionListener,
+Functional Interface: An interface that contains only one abstract method is called functional interface. Eg: Runnable , ActionListener,
 Comparable
 
 Marker Interface : It is an empty interface with no fields or methods. Eg: Clonnable , Serializable and Remote Intefaces.
@@ -513,8 +527,8 @@ Important Java packages are java.io , java.util and java.lang.
 
 MultiThreading in Java
 -------------------------------
-Multithreading : Concurrent execution of two or more parts of a program for concurrent execution.
-Threads can be created in two wasy:
+Multithreading : Concurrent execution of two or more parts of a program.
+Threads can be created in two ways:
 1. Extending the Thread class
 2. Implementing the Runnable interface
 
@@ -601,7 +615,7 @@ Inter thread communication
 Polling : Process of checking repeatedly till a condition becomes true is called polling.
 How does Java handle polling?
 1. Wait : Releases the lock on shared resources and waits till some other thread invokes notify
-2. Notify : Wakes up one single thread that called the wait on the same object.Calling notify does not give up resource
+2. Notify : Wakes up one single thread that called the wait on the same object. Calling notify does not give up resource.
 3. Notifyall : Wakes up all threads that called wait on the same object.
 
 Notify vs notifyall
@@ -673,3 +687,31 @@ Thread 1 is running
 Thread 1 is running
 Thread 1 is running
 
+The name of a thread can be changed by using the setName method.
+
+Synchronization is only needed when the Object is mutable.
+Java synchronization does not allow concurrent reads.
+The entire method or only a block can be synchronized in java.
+
+Producer Consumer Problem(Bounded Buffer Problem) : 
+----------------------------------------------------------------
+Multi process synchronization problem.
+2 Processes : Producer and Consumer. Both share a common fixed size buffer used as a queue.
+Producer : Produces data and puts it to the buffer and starts again
+Consumer : Consumer consumes the data from the buffer, one piece at a time.
+Caveat : Make sure that the producer does not try to add to the buffer if the buffer is full and the consumer does not try to 
+consume if the buffer is empty.
+Solution : If buffer is full, sleep( producer ). Next, when consumer consumes, notifies. Similarly, the consumer sleeps if empty.
+Now, the producer will notify if item is added to the queue.
+
+Thread Pool : A thread pool reuses previously created threads to execute current tasks and offers a solution to the problem of thread cycle overhead and resource thrashing.
+So for instance, if there are 5 tasks to be done, it can be done by 2 threads where the 3rd task is taken up only after 1st or 2nd thread is done
+executing or is idle.
+
+A semaphore controls the access to a shared resource via a counter. Available in java.util.concurrent package.
+Semaphore working
+-----------------------------
+If the semaphore’s count is greater than zero, then the thread acquires a permit, which causes the semaphore’s count to be decremented.
+Otherwise, the thread will be blocked until a permit can be acquired.
+When the thread no longer needs an access to the shared resource, it releases the permit, which causes the semaphore’s count to be incremented.
+If there is another thread waiting for a permit, then that thread will acquire a permit at that time
