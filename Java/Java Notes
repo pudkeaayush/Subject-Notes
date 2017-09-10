@@ -883,6 +883,6 @@ Comparable vs Comparator
 ------------------------------
                     Comparable                                                                       Comparator
             - Compares itself with another object                                   - Capable of comparing two different objects
-            - Natural Ordering                                                      - Represents ordering itself
+            - Natural Ordering ( Collections.sort(list) )                           - Represents ordering itself( Collections.sort(list , new Comparator() );
             - Can sort only based on one attribute                                  - Multiple attributes
             - compareTo                                                             - Override compare
