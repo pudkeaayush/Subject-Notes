@@ -886,3 +886,11 @@ Comparable vs Comparator
             - Natural Ordering ( Collections.sort(list) )                           - Represents ordering itself( Collections.sort(list , new Comparator() );
             - Can sort only based on one attribute                                  - Multiple attributes
             - compareTo                                                             - Override compare
+
+TreeMap vs HashMap vs LinkedHashMap vs Hashtable
+-----------------------------------------------------
+HashMap : Random Ordering : O(1)
+LinkedHashMap : Maintains insertion ordering , O(1)
+TreeMap : Maintains natural ordering , O( log n) lookup
+HashTable : Synchronized , Cannot have any null key or values
+
