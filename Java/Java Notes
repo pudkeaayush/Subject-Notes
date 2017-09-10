@@ -819,3 +819,70 @@ Disadvantages of Mark and Sweep Algorithm
 -------------------------------------------
 The main disadvantage of the mark-and-sweep approach is the fact that that normal program execution is suspended while the garbage collection algorithm runs.
 Other disadvantage is that, after the Mark and Sweep Algorithm is run several times on a program, reachable objects end up being separated by many, small unused memory regions.
+
+Island of Isolation:
+------------------------
+Object 1 references Object 2 and Object 2 references Object 1. Neither Object 1 nor Object 2 is referenced by any other object. That’s an island of isolation.
+Basically, an island of isolation is a group of objects that reference each other but they are not referenced by any active object in the application. Strictly speaking, even a single unreferenced object
+is an island of isolation too.
+
+Buffered Reader vs Scanner
+----------------------------------
+In Scanner class if we call nextLine() method after any one of the seven nextXXX() method then the nextLine() doesn’t not read values from console and cursor will not come into console it will skip that step. The nextXXX() methods are nextInt(), nextFloat(), nextByte(), nextShort(), nextDouble(), nextLong(), next().
+In BufferReader class there is no such type of problem. This problem occurs only for Scanner class, due to nextXXX() methods ignore newline character and nextLine() only reads newline character. If we use one more call of nextLine() method between nextXXX() and nextLine(), then this problem will not occur because nextLine() will consume the newline character
+
+BufferedReader br = new BufferedReader(new
+        InputStreamReader(System.in));
+        System.out.println("Enter an integer");
+        int a = Integer.parseInt(br.readLine());
+        System.out.println("Enter a String");
+        String b = br.readLine();
+        System.out.printf("You have entered:- " + a +
+                          " and name as " + b);
+                          
+Output:
+Enter an integer
+Enter a String
+you have entered:- 50 and name as Geek
+
+Scanner scn = new Scanner(System.in);
+         System.out.println("Enter an integer");
+         int a = scn.nextInt();
+         System.out.println("Enter a String");
+         String b = scn.nextLine();
+         System.out.printf("You have entered:- "
+                 + a + " " + "and name as " + b);
+              
+Output:
+Enter an integer
+Enter a String
+You have entered:- 50 and name as
+
+
+BufferedReader is synchronous while Scanner is not. BufferedReader should be used if we are working with multiple threads.
+BufferedReader has significantly larger buffer memory than Scanner.
+The Scanner has a little buffer (1KB char buffer) as opposed to the BufferedReader (8KB byte buffer), but it’s more than enough.
+BufferedReader is a bit faster as compared to scanner because scanner does parsing of input data and BufferedReader simply reads sequence of characters.
+
+ArrayList vs Vector
+-----------------------
+Snychronization : Vector : synchronized whrease ArrayList is not
+Performance : ArrayList is faster as not synchronized
+Data Growth : ArrayList ( 50%) vs Vector( 100 %)
+Traversal : Enumeration and Iterator for Vectors vs Iterator( ArrayList )
+
+Serialization and Deserialization in Java
+--------------------------------------------
+Serialization is a mechanism of converting the state of an object into a byte stream. 
+Deserialization is the reverse process where the byte stream is used to recreate the actual Java object in memory. 
+This mechanism is used to persist the object.
+
+The byte stream created is platform independent. So, the object serialized on one platform can be deserialized on a different platform.
+
+Comparable vs Comparator
+------------------------------
+                    Comparable                                                                       Comparator
+            - Compares itself with another object                                   - Capable of comparing two different objects
+            - Natural Ordering                                                      - Represents ordering itself
+            - Can sort only based on one attribute                                  - Multiple attributes
+            - compareTo                                                             - Override compare
