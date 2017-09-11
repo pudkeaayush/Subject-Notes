@@ -902,3 +902,58 @@ LinkedHashMap : Maintains insertion ordering , O(1)
 TreeMap : Maintains natural ordering , O( log n) lookup
 HashTable : Synchronized , Cannot have any null key or values
 
+HashMap is non synchronized. It is not-thread safe and can’t be shared between many threads without proper synchronization code whereas Hashtable is synchronized. It is thread-safe and can be shared with many threads.
+HashMap allows one null key and multiple null values whereas Hashtable doesn’t allow any null key or value.
+
+WeakHashMap :  In HashMap, we have a key and a value pair.
+Even though the object is specified as key in hashmap, it does not have any reference and it is not eligible for garbage collection if it is associated with HashMap i.e. HashMap dominates over Garbage Collector.
+ If object is specified as key doesn’t contain any references- it is eligible for garbage collection even though it is associated with WeakHashMap. i.e Garbage Collector dominates over WeakHashMap.
+
+How to synchronize an ArrayList in Java?
+- copyOnWriteMethod()
+- synchronizedList() method
+
+Java exceptions can either be :
+- Built in exceptions
+- User defined exceptions
+
+If both base and derived classes are caught as exceptions then catch block of derived class must appear before the base class.
+
+Checked vs Unchecked Exception:
+-------------------------------------
+If a client can reasonably be expected to recover from an exception, make it a checked exception. 
+If a client cannot do anything to recover from the exception, make it an unchecked exception
+
+Checked Exception : Compile Time ( eg: FileNotFoundException )
+Unchecked Exception : RunTime ( eg: Arithmetic Exception)
+
+Throw vs Throws vs Throwable
+--------------------------------
+Throw is used for throwing exception, throws (if I guessed correctly) is used to indicate that method can throw
+particular exception, and the Throwable class is the superclass of all errors and exceptions in the Java
+
+Establishing JDBC Connection
+1. Loading the driver
+2. Create the connections
+3. Create a statement
+4. Execute the query
+5. Close the connection
+
+Difference between creating String as new vs literal?
+When we create string with new() Operator, it’s created in heap and not added into string pool while String created using literal are created in String pool itself which exists in PermGen area of heap.
+String s = new String("Test");
+Does not  put the object in String pool , we need to call String.intern() method which is used to put  them into String pool explicitly. 
+its only when you create String object as String literal e.g. String s = "Test" Java automatically put that into String poo
+ 
+finally block will execute even if you put return statement in try block or catch block but finally block won't run if you call System.exit form try or catch.
+
+How do you ensure that N thread can access N resources without deadlock?
+If you acquire resources in a particular order and release resources in reverse order you can prevent deadlock. 
+
+Volatile Keyword in Java
+-----------------------------
+ // volatile keyword here makes sure that
+   // the changes made in one thread are 
+   // immediately reflect in other thread
+
+
