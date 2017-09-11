@@ -956,4 +956,8 @@ Volatile Keyword in Java
    // the changes made in one thread are 
    // immediately reflect in other thread
 
+FileReader vs FileInputStream
+---------------------------------
+FileReader - Reads in characters
+FileInputStream - Reads in bytes
 
