@@ -29,4 +29,8 @@ Build a co-occurrence matrix for the entire corpus first, then factorize it to y
 In word2vec, Skipgram models tries to capture co-occurrence one window at a time
 In Glove it tries to capture the counts of overall statistics how often its appears.
 
-Glove is highly scalable and efficient. 
+Advantages of GloVe
+-----------------------
+1. Fast training
+2. Highly scalable
+3. Good performance even with small corpus and small vectors
