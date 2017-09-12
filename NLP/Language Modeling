@@ -1,0 +1,41 @@
+General Motivation for Language Models
+1. Find the probability of sequence of words
+2. Find the probability of word, given a sequence of words.
+
+Language model gives probability of test sentences. It maximizes the probability of valid sentences and minimizes for non valid ones.
+
+Why do we care?
+- Useful in applications like Speech recognition.
+- Useful for auto correction, spelling correction etc.
+
+Estimating probabilities of word sequences is difficult because we need to see the sequence many many times.
+
+Marokovian Assumption : To predict the future, just need a bit of past knowledge.
+1. Unigram model :  Current word depends only on itself
+P( w1, w2 ...wn) = π Pr(wi) where i = 1 : n
+2. Bigram model : Current word depends on previous word only
+Pr(w1,w2...wn) = π Pr(wi | wi-1)
+
+Perplexity : Measures the uncertainty of a probability model( Log of the inverse of probability)
+Uniform distribution has high perplexity. Lower the perplexity, better it is. 
+
+Why is smoothing needed?
+The main problem with MLE( Maximum likelihood estimation) is that it overestimates the things we see rarely.
+For instance is Niranjan is awesome is the only sentence in our corpus, then Pr(awesome | niranjan) = 1 and thus it suffers from overestimation
+Solution : Smoothing
+Smoothing also overcomes the 0 probability problem.
+
+Different type of Smoothing techniques:
+-------------------------------------------
+1. Laplace smoothing : Add 1 smoothing( similarly can use add k smoothing)
+Pr( Wi | Wi-1) = #(Wi-1 , Wi) + 1 
+                -------------------  
+                    #(Wi-1) + V
+Problem with Laplace is that it does not take the word's probability into picture. Thus "Read with glasses" and "Read with play"
+have same probability.
+
+2. Intepolation : Addresses the problem of Laplace smoothing  i.e takes word's probability into picture.
+3. Katz back off : If suppose we have only seen, "denied allegations" , "denied visa" and "denied bail", if "denied X" is not seen, can
+steal from others that were seen. Good Turing gives us an estimate of how much to discount. Use unigram probabilities of that word.
+4. Kneser nay smoothing : Favors words that occur in many context.
+
