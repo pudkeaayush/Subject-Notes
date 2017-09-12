@@ -1,0 +1,32 @@
+Represent words as vectors( word embeddings). 
+Vector space models represent (embed) words in a continuous vector space where semantically similar words are mapped to 
+nearby points ('are embedded nearby each other').
+
+One hot vector representation:
+[house, car, tooth, car] becomes 
+[[1,0,0,0],
+[0,1,0,1],
+[0,0,1,0]]
+
+Cooccurrence based methods for word representations : 1 window left or 1 window right or something like that
+Stop words are a problem. Do dimensionality reduction( Truncated SVD )
+
+2 type of Vector space models:
+Count based models : Count-based methods compute the statistics of how often some word co-occurs with its neighbor words in a 
+large text corpus, and then map these count-statistics down to a small, dense vector for each word 
+Predictive models : Predictive models directly try to predict a word from its neighbors in terms of learned small, 
+dense embedding vectors (considered parameters of the model)
+
+Word2Vec - Predictive model. Comes in 2 flavors
+1. CBOW : Predicts target words (e.g. 'mat') from source context words ('the cat sits on the'). Useful for smaller datasets
+2. Skip gram model( uses the centre word to predict the surrounding words) :  Predicts source context-words from the target words. Useful to larger datasets as treats each context-target pair as a new observation.
+Eg: the quick brown fox jumped over the lazy dog
+Here we are trying to predict, the and brown from quick, quick and fox from brown etc.
+
+GloVe : Global Vectors for Word representations - Count based method.
+Build a co-occurrence matrix for the entire corpus first, then factorize it to yield matrices for word vectors and context vectors.
+
+In word2vec, Skipgram models tries to capture co-occurrence one window at a time
+In Glove it tries to capture the counts of overall statistics how often its appears.
+
+Glove is highly scalable and efficient. 
