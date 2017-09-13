@@ -61,3 +61,11 @@ Iterate through its characters and count the frequency of occurrence of each of 
 Use the frequency, divided by the total number of characters, as estimate for each character's probability
 Calculate the average length in bits of each character by multiplying its probability with the negative logarithm of that same probability (the base-2 logarithm if we want the unit of entropy to be bit)
 Take the sum of all average lengths of all characters. That is the result.
+
+11. What is the TF-IDF score of a word and in what context is this useful?
+ tf–idf, short for term frequency–inverse document frequency, is a numerical statistic that is intended to reflect how important a word is to a document in a collection or corpus.
+ The tf-idf value increases proportionally to the number of times a word appears in the document, but is often offset by the frequency of the word in the corpus, which helps to 
+ adjust for the fact that some words appear more frequently in general.
+ The weight of a term that occurs in a document is simply proportional to the term frequency
+ Hence an inverse document frequency factor is incorporated which diminishes the weight of terms that occur very frequently in the document set 
+ and increases the weight of terms that occur rarely.
