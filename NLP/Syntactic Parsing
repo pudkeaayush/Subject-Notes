@@ -1,0 +1,74 @@
+Constituency Parsing vs Dependency Parsing
+----------------------------------------------
+Constituency Parsing : Sub phrases( Focuses on identifying phrases and their recursive structures)
+
+                  Sentence
+                     |
+       +-------------+------------+
+       |                          |
+  Noun Phrase                Verb Phrase
+       |                          |
+     John                 +-------+--------+
+                          |                |
+                        Verb          Noun Phrase
+                          |                |
+                        sees              Bill
+
+
+
+Dependency Parsing : Relationships( Focuses on relations between the words)
+
+               sees
+                |
+        +--------------+
+subject |              | object
+        |              |
+      John            Bill
+      
+      
+How do we know what is a constituent?
+1. Based on distribution : A constituent behaves as a unit that can appear in different places.
+John talked [to the children] [about drugs].
+John talked [about drugs] [ to the children ].
+2. Substitution / expansion / proforms
+
+Why do we need dependency view?
+- Fewer nodes and edges mean fewer chances of error.
+- More efficient
+- Closer to semantics
+
+CFGs : Context Free Grammar rules are used to draw trees. However there can be ambiguity in the views.
+Hence we can add probabilities( PCFGs). 
+- Some trees are more likely than others.
+- Some rules are more frequent than others.
+
+Some ways to parse given a CFG?
+1. Top down parsing
+2. Bottom up parsing
+3. DP - CYK or CKY parsing
+
+ Main issues with vanilla PCFGs?
+ 1. Makes strong independence assumptions
+ 2. Rules are independent of the words in the sentence
+ 3. Rules are independent of other rules.
+ 
+ Solution? To include more context in the rules.
+ 
+1. Lexicalized Parsing : Note however that lexicalization increases grammar size.
+ 
+              S(questioned)
+                |
+        +-------------------------------+
+   NP( lawyer)                      VP(questioned)
+   |       |                    |                 |
+ DT(the)   NN(lawyer)        VT(questioned)      NP(witness)
+                                                |         |
+                                              DT(the)   NN(witness)
+                                              
+2. Structural dependence: Add  more information to non terminal nodes.
+3. Sub categorization
+
+Recently neural networks are used to overcome 3 problems of the older parsers:
+1. Sparse( mainly poorly estimated feature weights )
+2. Incomplete ( rely on a manually designed set of feature templates, which require a lot of expertise)
+3. Computationally expensive( most time consumed in feature extraction)
