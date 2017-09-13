@@ -1,0 +1,96 @@
+Manifest file : Describes the fundamental characteristics of the app and defines each of its components. Eg: permissions,
+activity, service, receiver etc.
+
+build.gradle => To configure how the Gradle tools compile and build your app.
+MainActivity extends AppCompatActivity
+
+Intent : An Intent is an object that provides runtime binding between separate components, such as two activities. The Intent represents an app’s "intent to do something." 
+Activity class is subclass of Context.
+An Intent can carry data types as key-value pairs called extras.
+Common uses of Intent
+-------------------------
+1. To start an Activity
+2. To start a service
+3. To deliver a broadcast
+
+Supporting different languages and cultures : Add support in res folder. Each directory's name should adhere to the following format:
+<resource type>-b+<language code>[+<country code>]    Eg: mipmap-b+es+ES for Spain
+
+Supporting different sizes :  four generalized sizes: small, normal, large, xlarge
+                              four generalized densities: low (ldpi), medium (mdpi), high (hdpi), extra high (xhdpi)
+                              
+MyProject/
+    res/
+        layout/
+            main.xml
+        layout-large/
+            main.xml
+Provide bitmap images that are properly scaled.
+xhdpi: 2.0
+hdpi: 1.5
+mdpi: 1.0 (baseline)
+ldpi: 0.75
+This means that if you generate a 200x200 image for xhdpi devices, you should generate the same resource in 150x150 for hdpi, 
+100x100 for mdpi, and 75x75 for ldpi devices.
+
+Fragment : A modular section of an activity, which has its own lifecycle, receives its own input events, and which you can add or 
+remove while the activity is running (sort of like a "sub activity" that you can reuse in different activities).
+One difference when creating a Fragment is that you must use the onCreateView() callback to define the layout. 
+One fragment should never talk directly to another fragment - instead go through the parent activity.
+Fragments communicate via Intents.
+
+In short, fragments live inside activities, and each activity can host many fragments. Like activities, they have a specific lifecycle, 
+unlike activities, they are not top-level application components. Advantages of fragments include code reuse and modularity 
+(e.g., using the same list view in many activities), including the ability to build multi-pane interfaces (mostly useful on tablets). 
+The main disadvantage is (some) added complexity. You can generally achieve the same thing with (custom) views in a non-standard and less robust way.
+
+Following are important points about a fragment:
+
+A fragment has its own layout and its own behavior with its own lifecycle callbacks.
+You can add or remove fragments in an activity while the activity is running.
+You can combine multiple fragments in a single activity to build a multi-pane UI.
+A fragment can be used in multiple activities.
+The fragment life cycle is closely related to the lifecycle of its host activity.
+When the activity is paused, all the fragments available in the acivity will also be stopped.
+A fragment can implement a behavior that has no user interface component.
+Fragments were added to the Android API in Android 3 (Honeycomb) with API version 11.
+
+Eg: Two fragments, displayed in different configurations for the same activity on different screen sizes. On a large screen, 
+both fragments fit side by side, but on a handset device, only one fragment fits at a time so the fragments must replace each other as the user navigates.
+
+Bundle : Bundle is used to pass data between Activities. You can create a bundle, pass it to Intent that starts the activity which then can be used from the destination activity.
+Intent intent = new...
+Intent(getApplicationContext(), SecondActivity.class);
+intent.putExtra("myKey", AnyValue);  
+startActivity(intent);
+
+You can get the passed values by doing:
+
+Bundle extras = intent.getExtras(); 
+String tmp = extras.getString("myKey");
+
+Content Providers vs SQLite
+-----------------------------
+Storing your data in a database is one good way to persist your data, but there's a caveat in Android-databases created in 
+Android are visible only to the application that created them. That is to say, a SQLite database created on Android by one 
+application is usable only by that application, not by other applications.
+So, if you need to share data between applications, you need to use the content provider model as recommended in Android.
+The main difference is: when your app needs to share information to another apps, use Content-Provider. SQLite only storage data for the app who creates it
+
+BroadcastReceiver : Receives broadcast. Eg: ACTION_BOOT_COMPLETED 
+
+AsyncTask vs Handler
+-------------------------
+If you are doing something isolated related to UI, for example downloading data to present in a list, go ahead and use AsyncTask.
+If you are doing multiple repeated tasks, for example downloading multiple images which are to be displayed in ImageViews
+(like downloading thumbnails) upon download, use a task queue with Handler.
+Both are internally implemented using Thread of Java.
+AsyncTask enables proper and easy use of the UI thread. This class allows you to perform background operations and publish results 
+on the UI thread without having to manipulate threads and/or handlers.
+AsyncTasks should ideally be used for short operations (a few seconds at the most.) If you need to keep threads running for long 
+periods of time, it is highly recommended you use the various APIs provided by the java.util.concurrent package such as Executor, ThreadPoolExecutor and FutureTask.
+
+There are two main uses for a Handler: 
+(1) to schedule messages and runnables to be executed as some point in the future; and 
+(2) to enqueue an action to be performed on a different thread than your own.
+
