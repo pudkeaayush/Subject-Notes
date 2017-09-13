@@ -1,0 +1,34 @@
+Entities
+o People, organizations, locations, times, dates, prices, ...
+o Or sometimes: genes, proteins, diseases, medicines, ...
+
+Relations
+o Located in, employed by, part of, married to, ... 
+
+Named Entity Recognition : 
+The task:
+1. find names in text
+2. classify them by type, usually {ORG, PER, LOC, MISC}
+
+Relation extraction example
+CHICAGO (AP) — Citing high fuel prices, United Airlines said Friday it has increased fares by $6 per round trip on flights to some
+cities also served by lower-cost carriers. American Airlines, a unit of AMR, immediately matched the move, spokesman Tim Wagner
+said. United, a unit of UAL, said the increase took effect Thursday night and applies to most routes where it competes against
+discount carriers, such as Chicago to Dallas and Atlanta and Denver to San Francisco, Los Angeles and New York. 
+
+     Subject         Relation        Object
+--------------------------------------------------
+American Airlines   subsidiary        AMR
+Tim Wagner          employee      American Airlines
+United Airlines    subsidiary          UAL 
+
+
+Relations can be of several types:
+1. Affiliations
+  - Personal, Organizational, Artifactual
+  
+2. Geospatial
+  - Proximity , Directional
+  
+3. Part of
+  - Organizational, Political
