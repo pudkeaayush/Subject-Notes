@@ -1,0 +1,30 @@
+Tagging problem : Input : Word Sequence( eg: the dog saw a cat) and Output: Tag sequence(D N V D N) 
+
+HMM Model for POS Tagging : Probabilistic Generative Model
+1. Given word only depends on the given tag
+2. Given tag only depends on the previous tag
+Pr(t1...tn | W1....Wn) = π Pr(Wi|ti).Pr(ti|ti-1)
+“Hidden” means the exact sequence of states (a sequence of POS tags) that generated the observation (a sequence of words) are hidden
+
+3 main ideas in HMMs:
+1. Likelihood => Forward Algorithm
+2. Decoding -> Viterbi Algorithm( DP algorithm , O(N^2 * T) , Uses a trellis)
+3. Learning -> Forward / Backward Algorithm
+
+Likelihood : Due to the Markov assumption, the probability of being in any state at any given time t only relies on the probability 
+of being in each of the possible states at time t−1.
+
+Generative vs Discriminative models
+-------------------------------------
+Generative models are based on Joint distribution - P( Y , X )
+Discriminative models are based on Conditional distribution - P( Y | X)
+
+Discriminative models can incorporate rich features which can have long range dependencies. For example, in POS tagging 
+we can incorporate features like capitalization of the word, syntactic properties of the neighbour words, and others like 
+location of the word in the sentence. Having such features in generative models generally leads to poor performance of the models.
+
+Maximum Entropy Markov Models( Log linear models) are generative models( so are Conditional Random fields).
+MEMM is for solving the problems of HMM. It gives full observation of sequence to every state, which make the model more experssive 
+than HMM. It is also a discriminative model, since it completely ignores modeling P(X) and the learning objective function consistent 
+with predictive function: P(Y |X). But MEMM has the label bias problem, which means a preference for states with lower number of transitions
+over others. To avoid this problem, one solution is not normalizing probabilities locally. This improvement gives us the conditional random field (CRF)
