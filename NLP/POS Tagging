@@ -23,7 +23,7 @@ Discriminative models can incorporate rich features which can have long range de
 we can incorporate features like capitalization of the word, syntactic properties of the neighbour words, and others like 
 location of the word in the sentence. Having such features in generative models generally leads to poor performance of the models.
 
-Maximum Entropy Markov Models( Log linear models) are generative models( so are Conditional Random fields).
+Maximum Entropy Markov Models( Log linear models) are discriminative models( so are Conditional Random fields).
 MEMM is for solving the problems of HMM. It gives full observation of sequence to every state, which make the model more experssive 
 than HMM. It is also a discriminative model, since it completely ignores modeling P(X) and the learning objective function consistent 
 with predictive function: P(Y |X). But MEMM has the label bias problem, which means a preference for states with lower number of transitions
