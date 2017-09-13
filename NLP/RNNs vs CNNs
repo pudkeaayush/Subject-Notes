@@ -1,0 +1,16 @@
+/* Taken from quora */
+
+Let me start by giving examples of one task each where you'll use temporal convnet and RNNs respectively.
+
+Task 1 - Sentiment analysis: You're given some review, and you want to predict the rating of the review. 
+Task 2 - Machine translation: Translate a sentence from some source language to target language.
+
+Now, the basic difference in terms of applicability of conv-net and RNN is that conv-nets (like most other machine learning algorithm) take a fixed size input and generate fixed-size outputs. RNN, on the other hand, can handle arbitrary input/output lengths, but would typically require much more data compared to conv-nets because it is a more complex model.
+
+Using this insight, we see that task 2 cannot be performed by conv-nets, since inputs and outputs are not fixed-length. So RNNs for task 2.
+For task 1, however, you can use RNN if you have a lot of data. But you can also use conv-nets - fix the length of the input, and adjust the input length by truncating or padding the actual input. Note that this will not affect the sentiment of the review much, so this is a reasonable approach. And since it's a 1D convolution, that is typically used in sequences, it is called temporal convolution. Conceptually, it is similar to 2D spatial convolution.
+
+CNNs : Feed forward networks
+RNNs : Can use their internal memory
+
+LSTMs solve vanishing or exploding gradient problems of RNNs by introducing gates.
