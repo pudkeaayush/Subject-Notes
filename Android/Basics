@@ -57,6 +57,10 @@ Fragments were added to the Android API in Android 3 (Honeycomb) with API versio
 
 Eg: Two fragments, displayed in different configurations for the same activity on different screen sizes. On a large screen, 
 both fragments fit side by side, but on a handset device, only one fragment fits at a time so the fragments must replace each other as the user navigates.
+Views have their own life cycle too.
+
+The main reason to use Fragments are for the backstack and lifecycle features. Eg: Using the back button
+Otherwise, custom views are more light weight and simpler to implement
 
 Bundle : Bundle is used to pass data between Activities. You can create a bundle, pass it to Intent that starts the activity which then can be used from the destination activity.
 Intent intent = new...
@@ -93,4 +97,33 @@ periods of time, it is highly recommended you use the various APIs provided by t
 There are two main uses for a Handler: 
 (1) to schedule messages and runnables to be executed as some point in the future; and 
 (2) to enqueue an action to be performed on a different thread than your own.
+
+WebViews
+-----------
+A common scenario in which using WebView is helpful is when you want to provide information in your application that you 
+might need to update, such as an end-user agreement or a user guide. Within your Android application, you can create an 
+Activity that contains a WebView, then use that to display your document that's hosted online.
+Another scenario in which WebView can help is if your application provides data to the user that always requires an Internet 
+connection to retrieve data, such as email. In this case, you might find that it's easier to build a WebView in your Android 
+application that shows a web page with all the user data, rather than performing a network request, then parsing the data and 
+rendering it in an Android layout. Instead, you can design a web page that's tailored for Android devices and then implement a 
+WebView in your Android application that loads the web page.
+
+Performance considerations
+-------------------------------
+1. Making ListView Scrolling Smooth : The key to a smoothly scrolling ListView is to keep the application’s main thread (the UI thread) free from heavy processing. 
+Ensure you do any disk access, network access, or SQL access in a separate thread. 
+2. Hold View Objects in a View Holder : Your code might call findViewById() frequently during the scrolling of ListView, which can slow 
+down performance. Even when the Adapter returns an inflated view for recycling, you still need to look up the elements and update them. 
+A way around repeated use of findViewById() is to use the "view holder" design pattern.
+A ViewHolder object stores each of the component views inside the tag field of the Layout, so you can immediately access them without 
+the need to look them up repeatedly. First, you need to create a class to hold your exact set of views.
+3. Delayed Loading of Views  :Sometimes your layout might require complex views that are rarely used. Whether they are item details, 
+progress indicators, or undo messages, you can reduce memory usage and speed up rendering by loading the views only when they are needed.
+4. Create a Re-usable Layout( define in an xml )
+
+
+
+
+
 
