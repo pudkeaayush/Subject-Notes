@@ -122,6 +122,11 @@ the need to look them up repeatedly. First, you need to create a class to hold y
 progress indicators, or undo messages, you can reduce memory usage and speed up rendering by loading the views only when they are needed.
 4. Create a Re-usable Layout( define in an xml )
 
+Adapters
+-------------
+Well adapters in Android are basically a bridge between the UI components and the data source that fill data into the UI Component
+For example, Lists (UI Component) get populated by using a list adapter, from a data source array.
+
 
 
 
