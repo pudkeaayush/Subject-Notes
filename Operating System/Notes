@@ -1,0 +1,74 @@
+What happens when we press the Power Button( in Linux)?
+1. BIOS( Basic Input / Output System ) -> Also called POST( Power on Self Test). Initializes the screen and keyboard and tests the main memory
+2. Master Boot Record( MBR ) and Boot Loader -> Searches for GRUB in the bootable partition and loads into RAM
+3. Boot Loader( Eg: GRUB) : Loads Kernel and RAM based filesystem( initramfs)
+4. Kernel : Initializes and configures the computer's memory and configures all the hardware attached to the system.
+5. initramfs : Mounts file system and device drivers
+6. /sbin/init : Starts other processes to get the system running.
+7. Command shell using getty
+8. X windows system
+
+Process Management
+--------------------
+Process : Program in execution. Eg: command shell, web browser etc
+Contains the following section:
+Heap: Dynamic allocation
+Stack : Temporary data
+Data section : Global data
+Text section : Program counter
+
+Parts of Program Control Bloc( PCB) - Each process has its own PCB
+1. Process Id
+2. Process state
+3. CPU registers : Must be restored
+4. Accounts information
+5. I/O status information
+6. CPU Scheduling
+
+Context switching : Can either be thread switch or process switch. Happens when
+- A high priority process comes to the ready state
+- Interrupt occurs
+- User and kernel mode switch( Not necessarily)
+- Preemptive CPU scheduling is used.
+
+Processes can either be CPU bound or I/O bound.
+The time taken to switch between the user and kernel mode is lesser than the time taken to switch from one process to another as the
+latter involves mode switch.
+fork() system call returns 0  in child process and process id of child process in parent processs.
+A process with n fork() system calls generates 2n – 1 child processes.
+ 
+Processes vs Threads
+---------------------
+Threads share same address space but have different stack. Otherwise it wouldn't be possible to run different code on each of them.
+A thread shares with other threads of the same process the code section, the data section, files and signals.
+
+Throughput: Number of processes that complete their execution per unit time.
+
+Why do we need scheduling?
+- Maximum CPU utilization
+- Fair allocation of CPU
+- Maximum throughput, minimum turnaround time, minimum waiting time and minimum response time
+
+Different scheduling algorithms
+---------------------------------
+1. FCFS : First come first served
+2. SJF : Shortest Job first. Can cause starvation if short processes keep coming. Minimum average waiting time
+3. SRTF : Shorted remaining time first. Can cause starvation is short processes keep coming.
+4. Priority based scheduling( Non preemptive)
+5. Highest Response Ration first : Avoid starvation. 
+6. Multilevel Queue scheduling : Different queues( low priority and high priority). Serve high priority first.
+7. Multilevel Feedback queue scheduling : If process uses too much CPU time, moved to lower priority queue.
+
+Burst time : Amount of time process spends in CPU
+Turn around time : Completion Time - Arrival time
+Waiting time : Turn around Time - Burst time
+
+3 types of schedulers:
+-----------------------
+1. Long Term or Job scheduler : Brings a new process to the ready state. Controls degree of multi programming i.e number of process
+present in the ready state at any point of time.
+2. Short term or CPU scheduler : Selects process but doesn't load from Ready -> Running. Dispatcher loads.
+Dispatcher duties : Context switching, Switching to user mode and jumping to proper location in newly loaded program.
+3. Medium Term scheduler : Responsible for suspending and resuming the process
+
+
