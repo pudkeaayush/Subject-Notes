@@ -1,0 +1,8 @@
+Hub vs Router vs Repeater vs Gateway vs Switch
+--------------------------------------------------
+Repeater : Physical layer. Do not amplify the signal. Regenerate signal bit by bit to prevent loss or weakning of the signal.
+Hub: Multiport Repeater. No intelligence. Eg: Star topology
+Bridge : Data link layer. Repeater + Filter contents by reading MAC addresses
+Switch : Multi port bridge. Does error checking too.
+Router : Network layer
+Gateway: Protocol convertor. Can operate at any level
