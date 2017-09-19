@@ -151,6 +151,12 @@ Problem with Peterson's solution:
 1. Involves busy waiting
 2. Limited to 2 processes.
 
+Solution of busy waiting? Yield
+The java.lang.Thread.yield() method causes the currently executing thread object to temporarily pause and allow other threads to execute.
+yield(), there's still no guarantee that the same thread won't be selected for execution again, given a pool of equal priority threads.
+
+Monitor: One way to achieve synchronization. Has wait() and notify() method.
+
 TestAndSet : Hardware solution to the synchronized problem. We have a shared lock variable which can take 2 values : either 0 or 1.
 Takes lock and executes CS or waits for the lock to be free, takes it and does CS work.
 Mutual exclusion and Progress are preserved but Bounded wait is not preserved.
@@ -164,3 +170,67 @@ Eg: 4KB buffer memory  can be divided into 4 1KB memory each and producer consum
 
 Note that there can be recursive mutex( can be locked several times). Needs to be unlocked same number of times else deadlock.
 
+Spinlock :  A spinlock is a lock which causes a thread trying to acquire it to simply wait in a loop ("spin") while repeatedly checking if the 
+lock is available. Since the thread remains active but is not performing a useful task, the use of such a lock is a kind of busy waiting.
+Useful for short locks and not longer ones. Often used in kernel.
+
+A semaphore is a very relaxed type of lockable object. A given semaphore has a predefined maximum count, and a current count. 
+You take ownership of a semaphore with a wait operation, also referred to as decrementing the semaphore, or even just abstractly 
+called P. You release ownership with a signal operation, also referred to as incrementing the semaphore, a post operation, or
+abstractly called V. The single-letter operation names are from Dijkstra's original paper on semaphores.
+Every time you wait on a semaphore, you decrease the current count. If the count was greater than zero then the decrement just 
+happens, and the wait call returns. If the count was already zero then it cannot be decremented, so the wait call will block 
+until another thread increases the count by signalling the semaphore.
+Every time you signal a semaphore, you increase the current count. If the count was zero before you called signal, and there 
+was a thread blocked in wait then that thread will be woken. If multiple threads were waiting, only one will be woken. 
+If the count was already at its maximum value then the signal is typically ignored, although some semaphores may report an error.
+
+Whereas mutex ownership is tied very tightly to a thread, and only the thread that acquired the lock on a mutex can release it, 
+semaphore ownership is far more relaxed and ephemeral. Any thread can signal a semaphore, at any time, whether or not that thread
+has previously waited for the semaphore.
+
+An analogy
+A semaphore is like a public lending library with no late fees. They might have 5 copies of C++ Concurrency in Action available to 
+borrow. The first five people that come to the library looking for a copy will get one, but the sixth person will either have to wait,
+or go away and come back later.
+The library doesn't care who returns the books, since there are no late fees, but when they do get a copy returned, 
+then it will be given to one of the people waiting for it. If no-one is waiting, the book will go on the shelf until someone 
+does want a copy.
+
+Reader Writer Problem
+----------------------
+Some threads may read and some may write, with the constraint that no process may access the shared resource for either reading or writing 
+while another process is in the act of writing to it. (In particular, it is allowed for two or more readers to access the share at the same time.) 
+A readers-writer lock is a data structure that solves one or more of the readers-writers problems.
+
+Banker's algorithm
+--------------------
+A deadlock avoidance algorithm. We are given an Allocation and max matrix. Now we need to compute need matrix and find safety sequence:
+Need = Max - Allocation
+New Avaialable at every state = Available + Allocation if the need is less than available.
+
+Priority Inversion vs Priority Inheritance
+-------------------------------------------
+Priority inversion is the problem and priority inheritance is the solution.
+If there are 3 processes and common code for High and low priority process and separate code for medium priority process, then due to
+the interruption of low priority thread by medium priority thread,the medium priority thread starts running.
+Due to this, it delays both low and high. High is of higher priority than the medium and does not share code with it but it is forced
+to wait for medium. This is called priority inversion.
+Solution : Low can inherit the priority of High while executing in CS. Low goes back to the old priority when low comes out of critical section.
+
+Deadlock
+----------
+1. Mutual exclusion : One or more than one resource are non-sharable (Only one process can use at a time)
+2. Hold and wait : A process is holding at least one resource and waiting for resources.
+3. No preemption : A resource cannot be taken from a process unless the process releases the resource.
+4. Circular wait : A set of processes are waiting for each other in circular form.
+
+Interprocess communication can happen in 2 ways:
+1. Message passing : Establish a link. Send and receive
+2. Shared memory : Eg: Producer consumer problem
+
+Paging and Segmentation : 
+----------------------------
+Page : Logical unit
+Frame : Physical unit
+Need to map logical unit to physical unit. Done by MMU through page table.
