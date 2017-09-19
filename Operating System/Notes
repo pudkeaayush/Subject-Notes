@@ -41,6 +41,55 @@ Processes vs Threads
 ---------------------
 Threads share same address space but have different stack. Otherwise it wouldn't be possible to run different code on each of them.
 A thread shares with other threads of the same process the code section, the data section, files and signals.
+If we want to switch between two threads in Java, we can use sleep method.
+
+class ClassB extends Thread{
+	public void run() {
+		for (int i = 0; i < 5 ; i++) {
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			System.out.println("This is A and B");
+		}
+	}	
+}
+ 
+class ClassA extends Thread {
+	public void run(){
+			for (int i = 0; i < 5 ; i++) {
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				System.out.println("This is A or B");
+			}		
+	}
+}
+
+public class HelloWorld{
+public static void main(String[] args) {
+		ClassA obj1 = new ClassA();
+		ClassB obj2 = new ClassB();
+		obj1.start();		
+		obj2.start();
+	}
+}
+Above program outputs: 
+This is A and B
+This is A or B
+This is A and B
+This is A or B
+This is A and B
+This is A or B
+This is A and B
+This is A or B
+This is A and B
+This is A or B
 
 Throughput: Number of processes that complete their execution per unit time.
 
@@ -51,13 +100,19 @@ Why do we need scheduling?
 
 Different scheduling algorithms
 ---------------------------------
-1. FCFS : First come first served
-2. SJF : Shortest Job first. Can cause starvation if short processes keep coming. Minimum average waiting time
-3. SRTF : Shorted remaining time first. Can cause starvation is short processes keep coming.
+1. FCFS : First come first served . Non preemptive
+2. SJF : Shortest Job first. Can cause starvation if short processes keep coming. Minimum average waiting time. Non preemptive
+3. SRTF : Shorted remaining time first. Can cause starvation is short processes keep coming. 
 4. Priority based scheduling( Non preemptive)
 5. Highest Response Ration first : Avoid starvation. 
 6. Multilevel Queue scheduling : Different queues( low priority and high priority). Serve high priority first.
 7. Multilevel Feedback queue scheduling : If process uses too much CPU time, moved to lower priority queue.
+8. Round Robin : Preemptive
+Preemptive schueduling can cause starvation. Round robin is better than FCFS in response time.
+If the time quatum is very large, Round Robin is equivalent to FCFS.
+
+Convoy effect: Convoy effect is a phenomenon due to FCFS algorithm in which the whole OS slows down due to few slow processes. Leads to
+wastage of CPU time and other devices.
 
 Burst time : Amount of time process spends in CPU
 Turn around time : Completion Time - Arrival time
@@ -71,4 +126,41 @@ present in the ready state at any point of time.
 Dispatcher duties : Context switching, Switching to user mode and jumping to proper location in newly loaded program.
 3. Medium Term scheduler : Responsible for suspending and resuming the process
 
+Process Synchronization
+------------------------
+Process synchronization problem arises in case of cooperative processes.
+Critical section: A code segment that can be accessed by only one process at a time.
+A solution for the critical section problem must satisfy the following three conditions:
+1. Mutual Exclusion: If a process Pi is executing in its critical section, then no other process is allowed to enter into the critical section.
+2. Progress: If no process is executing in the critical section, then the decision of a process to enter a critical section cannot be made by any other process that is executing in its remainder section. The selection of the process cannot be postponed indefinitely.
+3. Bounded Waiting: There exists a bound on the number of times other processes can enter into the critical section after a process has made request to access the critical section and before the requested is granted.
+
+Peterson's solution is a solution for Critical section problem.
+flag[0] = true; // I want to enter the CS
+P0_gate: turn = 1; // Let another enter 
+         while (flag[1] == true && turn == 1)
+         {
+             // busy wait
+         }
+         // critical section
+         ...
+         // end of critical section
+         flag[0] = false;
+
+Problem with Peterson's solution:
+1. Involves busy waiting
+2. Limited to 2 processes.
+
+TestAndSet : Hardware solution to the synchronized problem. We have a shared lock variable which can take 2 values : either 0 or 1.
+Takes lock and executes CS or waits for the lock to be free, takes it and does CS work.
+Mutual exclusion and Progress are preserved but Bounded wait is not preserved.
+
+Semaphores : Signalling mechanism vs Mutex : Locking mechanism
+Semaphores : Counting or Binary( 0 or 1)
+Semaphores: Used to control the number of shared access to a resource. 
+Mutex can only  be released by the thread that acquired it while you can signal semaphore from another thread or process.
+Ownership is not generally there with semaphore.
+Eg: 4KB buffer memory  can be divided into 4 1KB memory each and producer consumer can work on different buffers at the same time.
+
+Note that there can be recursive mutex( can be locked several times). Needs to be unlocked same number of times else deadlock.
 
