@@ -1,4 +1,6 @@
 Kernel or Mask or Filter : Non uniform weighted matrix
+In image processing, a kernel, convolution matrix, or mask is a small matrix. It is used for blurring, 
+sharpening, embossing, edge detection, and more. This is accomplished by doing a convolution between a kernel and an image
 Smoothing is same as blurring. Helps to reduce noise.
 Bigger kernel generally means bigger sigma( variance ).
 Convolution : Flips in both directions.
@@ -22,3 +24,7 @@ Original Image + Box filter( 1 1 1   : Blur image
 If suppose our filter is : 0 0 0    
                            0 2 0  -  Box filter => Sharpened image
                            0 0 0 
+Median filter is edge preserving. It is also a non linear filter.
+
+How do we handle noise?
+Filter / Smooth
