@@ -2,3 +2,4 @@ Kernel or Mask or Filter : Non uniform weighted matrix
 Smoothing is same as blurring. Helps to reduce noise.
 Bigger kernel generally means bigger sigma( variance ).
 Convolution : Flips in both directions.
+Convolution vs Correlation only matters if we have an asymmetric filter. Otherwise output is same.
