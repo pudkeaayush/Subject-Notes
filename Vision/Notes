@@ -1,2 +1,3 @@
-Kernel or Mask : Non uniform weighted matrix
+Kernel or Mask or Filter : Non uniform weighted matrix
 Smoothing is same as blurring. Helps to reduce noise.
+Bigger kernel generally means bigger sigma( variance ).
