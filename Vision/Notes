@@ -28,3 +28,31 @@ Median filter is edge preserving. It is also a non linear filter.
 
 How do we handle noise?
 Filter / Smooth
+
+Basis : Basis of a vector space V is a linearly independent subset of V that spans V.
+Fourier Transform : Any periodic signal can be represented as a sum of sinusoids.
+
+Convolution is a neighborhood operation in which each output pixel is the weighted sum of neighboring input pixels.
+A convolution kernel is a correlation kernel that has been rotated 180 degrees.
+For example, suppose the image is
+
+A = [17  24   1   8  15
+     23   5   7  14  16
+      4   6  13  20  22
+     10  12  19  21   3
+     11  18  25   2   9]
+and the correlation kernel is
+
+h = [8   1   6
+     3   5   7
+     4   9   2]
+You would use the following steps to compute the output pixel at position (2,4):
+
+- Rotate the correlation kernel 180 degrees about its center element to create a convolution kernel.
+- Slide the center element of the convolution kernel so that it lies on top of the (2,4) element of A.
+- Multiply each weight in the rotated convolution kernel by the pixel of A underneath.
+- Sum the individual products from step 3.
+Hence the (2,4) output pixel is
+1.2 + 8.9 + 15.4 + 7.7 + 14.5 + 16.3 + 13.6 + 20.1 + 22.8 = 575
+
+Convolution in spatial domain is equivalent to multiplication in frequency domain
