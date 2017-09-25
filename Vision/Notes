@@ -3,3 +3,22 @@ Smoothing is same as blurring. Helps to reduce noise.
 Bigger kernel generally means bigger sigma( variance ).
 Convolution : Flips in both directions.
 Convolution vs Correlation only matters if we have an asymmetric filter. Otherwise output is same.
+Shift Invariant : Operator behaves the same everywhere i.e the value of the output depends on the pattern in the image neighborhood,
+not on the position of the neighborhood( eg: left or right or top or bottom).
+
+          0 0 0
+Impulse : 0 1 0
+          0 0 0
+          
+Original Image + Impulse : No change( Original image)
+Original Image + not centered impulse( 0 0 0   : Shifted left by 1 pixel with correlation
+                                       0 0 1
+                                       0 0 0)
+                                       
+Original Image + Box filter( 1 1 1   : Blur image
+                             1 1 1 
+                             1 1 1 )
+
+If suppose our filter is : 0 0 0    
+                           0 2 0  -  Box filter => Sharpened image
+                           0 0 0 
