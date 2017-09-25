@@ -86,3 +86,7 @@ Low frequency components in an image correspond to smooth regions.
 
 Convolution in spatial domain is equivalent to multiplication in frequency domain.
 
+     Spatial domain(x)            |              Frequency domain(u)
+g = f * h where * is convolution                      G = F . H
+Conversely also,
+g = f.h                                               G = F * H where * is convolution
