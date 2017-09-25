@@ -55,4 +55,34 @@ You would use the following steps to compute the output pixel at position (2,4):
 Hence the (2,4) output pixel is
 1.2 + 8.9 + 15.4 + 7.7 + 14.5 + 16.3 + 13.6 + 20.1 + 22.8 = 575
 
-Convolution in spatial domain is equivalent to multiplication in frequency domain
+In spatial domain , we deal with images as it is. The value of the pixels of the image change with respect to scene. 
+Whereas in frequency domain , we deal with the rate at which the pixel values are changing in spatial domain.
+
+Spatial Domain 
+----------------
+Input Image Matrix => Processing => Output image matrix
+
+Frequency Domain
+-----------------
+Input Image => Frequency distribution => Processing => Inverse transformation => Output Image
+
+TRANSFORMATION.
+A signal can be converted from time domain into frequency domain using mathematical operators 
+called transforms. There are many kind of transformation that does this. Some of them are given below.
+- Fourier Series
+- Fourier transformation
+- Laplace transform
+- Z transform
+
+FREQUENCY COMPONENTS
+Any image in spatial domain can be represented in a frequency domain. But what do this frequencies actually mean.
+We will divide frequency components into two major components.
+
+HIGH FREQUENCY COMPONENTS
+High frequency components correspond to edges in an image.
+
+LOW FREQUENCY COMPONENTS
+Low frequency components in an image correspond to smooth regions.
+
+Convolution in spatial domain is equivalent to multiplication in frequency domain.
+
