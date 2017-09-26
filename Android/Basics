@@ -98,6 +98,10 @@ There are two main uses for a Handler:
 (1) to schedule messages and runnables to be executed as some point in the future; and 
 (2) to enqueue an action to be performed on a different thread than your own.
 
+Service vs Asyntask
+---------------------
+In short, Service for time consuming tasks, AsyncTask for short-lived tasks
+
 WebViews
 -----------
 A common scenario in which using WebView is helpful is when you want to provide information in your application that you 
