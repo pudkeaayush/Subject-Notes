@@ -91,5 +91,6 @@ g = f * h where * is convolution                      G = F . H
 Conversely also,
 g = f.h                                               G = F * H where * is convolution
 
-Homography : we know how the second image (let’s say the image to the right) will look from the current image’s perspective
+Homography : we know how the second image (let’s say the image to the right) will look from the current image’s perspective.
+A Homography is a transformation ( a 3×3 matrix ) that maps the points in one image to the corresponding points in the other image.
 Warping : Converting an image, based on a new transformation
