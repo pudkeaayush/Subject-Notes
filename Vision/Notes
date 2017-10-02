@@ -92,3 +92,4 @@ Conversely also,
 g = f.h                                               G = F * H where * is convolution
 
 Homography : we know how the second image (let’s say the image to the right) will look from the current image’s perspective
+Warping : Converting an image, based on a new transformation
