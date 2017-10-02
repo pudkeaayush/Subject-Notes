@@ -1,0 +1,18 @@
+calloc vs malloc
+----------------
+calloc() zero-initializes the buffer, while malloc() leaves the memory uninitialized. Thus malloc is faster.
+malloc() takes single argument whereas calloc takes 2.
+
+How does malloc and free work?
+Your process has a region of memory, from address x to address y, called the heap. All your malloc'd data lives in this area. 
+malloc() keeps some data structure, let's say a list, of all the free chunks of space in the heap. When you call malloc, it 
+looks through the list for a chunk that's big enough for you, returns a pointer to it, and records the fact that it's not 
+free any more as well as how big it is. When you call free() with the same pointer, free() looks up how big that chunk is and 
+adds it back into the list of free chunks(). If you call malloc() and it can't find any large enough chunk in the heap, it uses 
+the brk() syscall to grow the heap, i.e. increase address y and cause all the addresses between the old y and the new y to be 
+valid memory. brk() must be a syscall; there is no way to do the same thing entirely from userspace.
+
+sbrk vs mmap
+------------
+When a process needs memory, some room is created by moving the upper bound of the heap forward, using the brk() or sbrk() system calls.
+For very large requests, malloc() uses the mmap() system call to find addressable memory space
