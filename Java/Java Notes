@@ -649,6 +649,23 @@ class ThreadTest extends Thread
     }
   }
 }
+
+What is the output of the following program:
+public class HelloWorld{
+
+     public static void main(String []args){
+        try {
+            Integer i = Integer.parseInt("-123S");
+        } catch ( Exception e) {
+            System.out.println("Yo");
+        } catch( NumberFormatException e ) {
+            System.out.println("yoyo");
+        }
+     }
+}
+
+Output:
+Compiler error. NumberFormatException has already been caught.
  
 // Main Class
 public class Main
