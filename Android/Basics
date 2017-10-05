@@ -131,6 +131,19 @@ Adapters
 Well adapters in Android are basically a bridge between the UI components and the data source that fill data into the UI Component
 For example, Lists (UI Component) get populated by using a list adapter, from a data source array.
 
+SharedPreferences - Key Value pairs
+----------------------------------------
+If you have a relatively small collection of key-values that you'd like to save, you should use the SharedPreferences APIs.
+A SharedPreferences object points to a file containing key-value pairs and provides simple methods to read and write them. 
+Each SharedPreferences file is managed by the framework and can be private or shared.
+
+ANR vs Crash
+--------------
+ANR (A pplication N ot R esponding )is due to handling long running task in Main Thread(UI thread).If the main thread is 
+stopped for more than 5 sec you get ANR.
+Crash are due to exception and error like Nullpoint,classNotfound, typecast ,parse error etc. ANR also causes crash of application.
+Note:Never run long running task on UI thread
+
 
 
 
