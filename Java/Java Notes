@@ -1056,6 +1056,10 @@ Model : Application data + logic
 View  : UI
 Controller : Inputs
 
+Example : We are going to create a Student object acting as a model.StudentView will be a view class which can print 
+student details on console and StudentController is the controller class responsible to store data in Student object 
+and update view StudentView accordingly.
+
 Factory pattern : Create objects without exposing the creation logic to the client and refer to the newly created object suing a 
 common interface.
 
