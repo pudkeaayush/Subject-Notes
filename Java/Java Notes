@@ -1119,3 +1119,27 @@ public class FactoryPatternDemo {
       shape3.draw();
    }
 }
+
+Unit Testing : 3 steps : Arrange , Act , Assert
+------------- 
+testAdd()
+{
+    int x = 5;
+    int y = -2;
+    int expectedResult = 3;
+
+    Calculator calculator = new Calculator();
+    int actualResult = calculator.Add(x, y);
+    Assert.AreEqual(expectedResult, actualResult);
+}
+
+Integration tests : Different parts of the system work together.
+
+
+
+
+
+
+
+
+
