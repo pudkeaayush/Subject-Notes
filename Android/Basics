@@ -141,7 +141,23 @@ SharedPreferences vs Bundle
 -------------------------------
 If you're using SharedPreferences anyways because you have to keep the values when the app is closed, then just use SharedPreferences all of the time. 
 However, to save storage space on the user's phone, use a bundle if you only need to share the data between activities and it can be scrapped after the app is close
+SharedPreferences are useful when you want to use some data across all activity. The problem with storing data in a global variable instead
+of sharedPrefernces is that, data will be lost when you close the application.
 
+Implict Intents vs Explicit Intents
+------------------------------------
+Implicit Intents do not directly specify the Android components which should be called , it only specifies action to be performed.
+An Uri can be used with the implicit intent to specify data type.
+
+Intent intent = new Intent(ACTION_VIEW,Uri.parse("http://www.google.com");
+this will cause web browser to open a webpage . Android system searches for all components which are registered for the specific 
+action and the data type.If many components are found then the user can select which component to use..
+
+Explicit intents are used in the application itself wherein one activity can switch to other activty.
+Example Intent intent = new Intent(this,Target.class); this causes switching of activity from current context to the target activity.
+Explicit Intents can also be used to pass data to other activity using putExtra method and retrieved by target activity by getIntent().getExtras() methods...
+
+Explicit Intents are generally used within an application when we know the name of class to call.
 ANR vs Crash
 --------------
 ANR (A pplication N ot R esponding )is due to handling long running task in Main Thread(UI thread).If the main thread is 
@@ -161,8 +177,19 @@ to sibling elements (such as to the left-of or below another view) or in positio
 
 SQLite vs SQL
 ---------------
-Client/server SQL database engines strive to implement a shared repository of enterprise data. They emphasize scalability, concurrency, centralization, and control. 
-SQLite strives to provide local data storage for individual applications and devices. SQLite emphasizes economy, efficiency, reliability, independence, and simplicity.
 SQLite does not compete with client/server databases. SQLite competes with fopen().
 For Client/Server Applications, High-volume Websites, Very large datasets and High Concurrency, use traditional RDMS. Else use SQLite
+SQLite generally does not have a separate server process. SQLite is file-based, unlike other databases, like SQL Server and MySQL which are server-based.
+All data is cached in SQLite
+SQLite only supports a single writer at a time (meaning the execution of an individual transaction). It locks the entire database when
+it needs to write.
+
+Steps in SQLite
+----------------
+Create "SQLiteDatabase" object.
+Open or Create database and create connection.
+Perform insert, update or delete operation.
+Create Cursor to display data from table of database.
+Close the database connectivity.
+
 
