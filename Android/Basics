@@ -137,6 +137,11 @@ If you have a relatively small collection of key-values that you'd like to save,
 A SharedPreferences object points to a file containing key-value pairs and provides simple methods to read and write them. 
 Each SharedPreferences file is managed by the framework and can be private or shared.
 
+SharedPreferences vs Bundle
+-------------------------------
+If you're using SharedPreferences anyways because you have to keep the values when the app is closed, then just use SharedPreferences all of the time. 
+However, to save storage space on the user's phone, use a bundle if you only need to share the data between activities and it can be scrapped after the app is close
+
 ANR vs Crash
 --------------
 ANR (A pplication N ot R esponding )is due to handling long running task in Main Thread(UI thread).If the main thread is 
@@ -144,8 +149,20 @@ stopped for more than 5 sec you get ANR.
 Crash are due to exception and error like Nullpoint,classNotfound, typecast ,parse error etc. ANR also causes crash of application.
 Note:Never run long running task on UI thread
 
+Relative Layout vs Linear Layout
+---------------------------------
+Android need layout to contain all view in proper format. Linear layout is one of them. As per name Linear layout is a view group 
+that aligns all children in a single direction, vertically or horizontally. We have to specify layout direction “horizontal” 
+or “vertical ” using attribute android:orientation
 
+RelativeLayout is a view group that displays child views in relative positions. The position of each view can be specified as relative 
+to sibling elements (such as to the left-of or below another view) or in positions relative to the parent RelativeLayout area
+(such as aligned to the bottom, left or center).
 
-
-
+SQLite vs SQL
+---------------
+Client/server SQL database engines strive to implement a shared repository of enterprise data. They emphasize scalability, concurrency, centralization, and control. 
+SQLite strives to provide local data storage for individual applications and devices. SQLite emphasizes economy, efficiency, reliability, independence, and simplicity.
+SQLite does not compete with client/server databases. SQLite competes with fopen().
+For Client/Server Applications, High-volume Websites, Very large datasets and High Concurrency, use traditional RDMS. Else use SQLite
 
