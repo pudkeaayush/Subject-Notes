@@ -1309,3 +1309,17 @@ TDD is writing a test which will fail, then writing the minimum amount of code r
 code to make it clean. This is done in cycles, fail -> pass -> refactor, 
 
 Unit Testing is about testing a code in small, isolated units.
+
+Functional programming in Java
+---------------------------------
+You have much to gain from adopting functional techniques and syntax in your Java programs: the code is concise, more expressive, 
+has fewer moving parts, is easier to parallelize, and is generally easier to understand than object-oriented code. 
+The challenge is to change your thinking from the imperative style of programming — which is familiar to the vast majority of 
+developers — to thinking declaratively.
+
+In imperative, we implement method ourselves. In declarative we simply use as per our convenience.
+Eg: Incrementing map value by 1
+public static void incrementPageVisit(Map<String, Integer> pageVisits, String page) {
+    pageVisits.merge(page, 1, (oldValue, value) -> oldValue + value); 
+}
+
