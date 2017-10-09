@@ -151,7 +151,12 @@ An Uri can be used with the implicit intent to specify data type.
 
 Intent intent = new Intent(ACTION_VIEW,Uri.parse("http://www.google.com");
 this will cause web browser to open a webpage . Android system searches for all components which are registered for the specific 
-action and the data type.If many components are found then the user can select which component to use..
+action and the data type.If many components are found then the user can select which component to use.
+
+When using implicit intents it is necessary to check for some conditions before. However, it is possible that there are no applications 
+that can handle your intent. In this case, your application will crash when you invoke startActivity(). To avoid this, before calling 
+startActivity() you should first verify that there is at least one application registered in the system that can handle the intent. 
+To do this use resolveActivity() on your intent object:
 
 Explicit intents are used in the application itself wherein one activity can switch to other activty.
 Example Intent intent = new Intent(this,Target.class); this causes switching of activity from current context to the target activity.
@@ -202,5 +207,83 @@ assets vs raw folder
 In one line, the files in the raw/ directory are not compiled by the platform, are assigned a resource ID and cannot be grouped into 
 sub-folders whereas if you want the otherwise use the assets/ directory.
 Example : External fonts can be placed in assets folder.
+
+Directory structure in Android
+-------------------------------
+src - src files
+gen - genrated files. Cotains the R file
+bin - apk
+libs 
+res - layout, values
+project properties 
+Android manifest
+
+Lifecyle
+-----------
+1. onCreate
+2. onStart
+3. onResume
+Activity Running
+4. onPause : Called when another activity comes to the foreground
+5. onStop : When activity is no longer visible
+6. onDestroy : The activity is being finished or destroyed by the system
+
+startActivityForResult() : Sometimes you want to get a result back from an activity when it ends
+If your application cannot work without a specific feature being available on the system, you can prevent users from installing your 
+app with a <uses-feature> element in your app’s manifest file to specify a non-negotiable dependency.
+
+Types of broadcast
+------------------
+Types :- Local,Normal,Ordered and Sticky
+
+Normal Broadcast
+:- use sendBroadcast()
+:- asynchronous broadcast
+:- any receiver receives broadcast not any particular order
+
+Ordered Broadcast
+:- use sendOrderedBroadcast()
+:- synchronous broadcast
+:- receiver receives broadcast in priority base
+:- we can also simply abort broadcast in this type
+
+Local Broadcast
+:- use only when broadcast is used only inside same process
+
+Sticky Broadcast
+:- normal broadcast intent is not available any more after is was send and processed by the system.
+:- use sendStickyBroadcast(Intent)
+:- the corresponding intent is sticky, meaning the intent you are sending stays around after the broadcast is complete.
+:- because of this others can quickly retrieve that data through the return value of registerReceiver(BroadcastReceiver, IntentFilter).
+:- apart from this same as sendBroadcast(Intent).
+
+The value of a sticky broadcast is the value that was last broadcast and is currently held in the sticky cache. This is not the value of a broadcast 
+that was received right now. I suppose you can say it is like a browser cookie that you can access at any time. The sticky broadcast is 
+now deprecated.
+One example of a sticky broadcast sent via the operating system is ACTION_BATTERY_CHANGED. When you call registerReceiver() for that 
+action -- even with a null BroadcastReceiver -- you get the Intent that was last broadcast for that action. Hence, you can use this to 
+find the state of the battery without necessarily registering for all future state changes in the battery.
+
+An AsyncTask is not tied to the life cycle of the Activity that contains it. So, for example, if you start an AsyncTask inside an 
+Activity and the user rotates the device, the Activity will be destroyed (and a new Activity instance will be created) but the 
+AsyncTask will not die but instead goes on living until it completes.
+Then, when the AsyncTask does complete, rather than updating the UI of the new Activity, it updates the former instance of the Activity
+(i.e., the one in which it was created but that is not displayed anymore!). This can lead to an Exception 
+(of the type java.lang.IllegalArgumentException: View not attached to window manager if you use, for instance, findViewById to retrieve a view inside the Activity).
+There’s also the potential for this to result in a memory leak since the AsyncTask maintains a reference to the Activty, which prevents 
+the Activity from being garbage collected as long as the AsyncTask remains alive.
+For these reasons, using AsyncTasks for long-running background tasks is generally a bad idea . Rather, for long-running 
+background tasks, a different mechanism (such as a service) should be employed.
+
+Service vs intent Service
+-------------------------------
+Service class uses the application's main thread, while IntentService creates a worker thread and uses that thread to run the service.
+IntentService creates a queue that passes one intent at a time to onHandleIntent(). Thus, implementing a multi-thread should be made by 
+extending Service class directly.
+Service class needs a manual stop using stopSelf(). Meanwhile, IntentService automatically stops itself when there is no intent in 
+queue, all queued intents are handled. 
+
+The Service runs in background but it runs on the Main Thread of the application.
+The IntentService runs on a separate worker thread
 
 
