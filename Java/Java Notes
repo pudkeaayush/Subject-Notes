@@ -1329,5 +1329,15 @@ JVM build tools : Help compile, perform static analysis, run unit tests and, fin
 2. Maven : XML based. Can download dependencies based on networks( later adopted by Ant through Ivy). Problem : Big size Benefit: Life cycle
 3. Gradle : DSL based on Groovy. Benefits : Combines benefits of both => Lifecycle and Control.
 
+apply plugin: 'java'
+ 
+repositories {
+mavenCentral()
+}
+ 
+dependencies {
+testCom
 
+You’ll notice that we are not specifying what to test nor what classes to use to create a jar file. Gradle assumes that tests are in 
+src/test/java and that the implementation code that should be packaged to the jar file is in src/main/java.
 
