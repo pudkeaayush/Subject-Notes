@@ -1291,3 +1291,21 @@ pool-1-thread-5 (End)
 In this example if suppose the thread pool is executed with 5 threads, then it runs as above. 5 will start only when one of them from 
 these threads end.
 
+TDD( Test driven development )
+--------------------------------
+1. Write the test
+2. Run the test (there is no implementation code, test does not pass)
+3. Write just enough implementation code to make the test pass
+4. Run all tests (tests pass)
+5. Refactor
+6. Repeat
+
+Unit Testing is a component of Test Driven Development
+You can do unit testing without doing test driven development. However you can't do test driven development without using unit tests.
+When you do traditional unit testing, you write test after you wrote your code.
+Test driven development approach is to write unit test before writing code.
+
+TDD is writing a test which will fail, then writing the minimum amount of code required to make it run, then refactoring the 
+code to make it clean. This is done in cycles, fail -> pass -> refactor, 
+
+Unit Testing is about testing a code in small, isolated units.
