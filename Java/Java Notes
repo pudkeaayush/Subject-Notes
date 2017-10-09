@@ -1155,8 +1155,139 @@ public class Baz implements Foo, Bar {
 
 Cannot call x + x as it is ambiguous.
 
+Java 8 features
+----------------
+1. forEach() method in Iterable interface
+List<String> names = new LinkedList<>();
+
+// ... add some names to the collection
+
+names.forEach(name -> System.out.println(name));
+
+2. default and static methods in Interfaces
+[d]efault methods enable you to add new functionality to the interfaces of your libraries and ensure binary compatibility 
+with code written for older versions of those interfaces.
+Java interface static method is similar to default method except that we can’t override them in the implementation classes. 
+This feature helps us in avoiding undesired results incase of poor implementation in implementation classes
+
+Eg:     public interface MyData {
+
+		default void print(String str) {
+			if (!isNull(str))
+				System.out.println("MyData Print::" + str);
+		}
+
+		static boolean isNull(String str) {
+			System.out.println("Interface Null Check");
+
+			return str == null ? true : "".equals(str) ? true : false;
+		}
+	}
+	
+	public class MyDataImpl implements MyData {
+
+		public boolean isNull(String str) {
+			System.out.println("Impl Null Check");
+
+			return str == null ? true : false;
+		}
+
+		public static void main(String args[]){
+			MyDataImpl obj = new MyDataImpl();
+			obj.print("");
+			obj.isNull("abc");
+		}
+	}
 
 
+Output: Interface Null Check
+Impl Null Check
+
+If we changed the static method to default,
+Output : Impl Null Check
+MyData Print::
+Impl Null Check
+
+3. Functional Interfaces and Lambda Expressions : Reduces code size
+Lambda expressions : Since functional interfaces have only one method, lambda expressions can easily provide the method implementation.
+We just need to provide method arguments and business logic. For example, we can write above implementation using lambda expression as:
+Runnable r1 = () -> {
+			System.out.println("My Runnable");
+		};
+instead of writing :
+Runnable r = new Runnable(){
+			@Override
+			public void run() {
+				System.out.println("My Runnable");
+			}};
+			
+4. Java Stream API for Bulk Data Operations on Collections:  Like map, reduce and filter
+		
+		List<Integer> myList = new ArrayList<>();
+		for(int i=0; i<100; i++) myList.add(i);
+		
+		//sequential stream
+		Stream<Integer> sequentialStream = myList.stream();
+		
+		//parallel stream
+		Stream<Integer> parallelStream = myList.parallelStream();
+		
+		//using lambda with Stream API, filter example
+		Stream<Integer> highNums = parallelStream.filter(p -> p > 90);
+		//using lambda in forEach
+		highNums.forEach(p -> System.out.println("High Nums parallel="+p));
+		
+		Stream<Integer> highNumsSeq = sequentialStream.filter(p -> p > 90);
+		highNumsSeq.forEach(p -> System.out.println("High Nums sequential="+p));
+
+Output:
+High Nums parallel=91
+High Nums parallel=96
+High Nums parallel=93
+High Nums parallel=98
+High Nums parallel=94
+High Nums parallel=95
+High Nums parallel=97
+High Nums parallel=92
+High Nums parallel=99
+High Nums sequential=91
+High Nums sequential=92
+High Nums sequential=93
+High Nums sequential=94
+High Nums sequential=95
+High Nums sequential=96
+High Nums sequential=97
+High Nums sequential=98
+High Nums sequential=99
+
+5. Java Time API
 
 
+Thread Pool
+-------------
+Java Thread pool represents a group of worker threads that are waiting for the job and reuse many times.
+In case of thread pool, a group of fixed size threads are created. A thread from the thread pool is pulled out and 
+assigned a job by the service provider. After completion of the job, thread is contained in the thread pool again.
+Advantage of Java Thread Pool:
+Better performance It saves time because there is no need to create new thread.
+Real time usage:
+It is used in Servlet and JSP where container creates a thread pool to process the request.
+
+pool-1-thread-1 (Start) message = 0
+pool-1-thread-2 (Start) message = 1
+pool-1-thread-3 (Start) message = 2
+pool-1-thread-5 (Start) message = 4
+pool-1-thread-4 (Start) message = 3
+pool-1-thread-2 (End)
+pool-1-thread-2 (Start) message = 5
+pool-1-thread-1 (End)
+pool-1-thread-1 (Start) message = 6
+pool-1-thread-3 (End)
+pool-1-thread-3 (Start) message = 7
+pool-1-thread-4 (End)
+pool-1-thread-4 (Start) message = 8
+pool-1-thread-5 (End)
+
+In this example if suppose the thread pool is executed with 5 threads, then it runs as above. 5 will start only when one of them from 
+these threads end.
 
