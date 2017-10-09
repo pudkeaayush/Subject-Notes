@@ -1139,8 +1139,21 @@ testAdd()
 
 Integration tests : Different parts of the system work together.
 
+Diamond of Death : Java does not provide multiple inheritance to avoid the problem of diamond of death.
 
+public interface Foo {
+    int x; // implicitly public static final int
+}
 
+public interface Bar {
+    int x;
+}
+
+public class Baz implements Foo, Bar {
+    private int y = Foo.x + Bar.x;
+}
+
+Cannot call x + x as it is ambiguous.
 
 
 
