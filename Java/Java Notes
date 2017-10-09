@@ -1323,3 +1323,11 @@ public static void incrementPageVisit(Map<String, Integer> pageVisits, String pa
     pageVisits.merge(page, 1, (oldValue, value) -> oldValue + value); 
 }
 
+JVM build tools : Help compile, perform static analysis, run unit tests and, finally, create JAR files.
+----------------
+1. Ant : Similar to make. Based on XML. Problem : XML becomes big, heirarchical in nature Benefits : Control
+2. Maven : XML based. Can download dependencies based on networks( later adopted by Ant through Ivy). Problem : Big size Benefit: Life cycle
+3. Gradle : DSL based on Groovy. Benefits : Combines benefits of both => Lifecycle and Control.
+
+
+
