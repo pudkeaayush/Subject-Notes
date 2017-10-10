@@ -27,14 +27,14 @@ bytecode using java command.
 The main method as we saw, was run by JVM. JVM is a part of JRE( Java RunTime Enviornment). 
 JVM consists of :
 1. Class loader : Responsible for
-    - Loading
+    - Loading 
     - Linking
     - Initialization : Initializes static variables and static blocks
     
     Types of Class Loader :
     a. Bootstrap class loader : Eg: String.class.getClassLoader() will return null as String class is loaded by Bootstrap class
-                                loader and bootstrap class loader is not a java object.
-    b. Extension class loader
+                                loader and bootstrap class loader is not a java object. Inside rt.jar in jre folder
+    b. Extension class loader : jre/lib/ext
     c. System / Application class loader : Eg: MyCustomClass.class.getClassLoader() will print something like : sun.misc.Launcher$AppClassLoader@73d16e93
     as the Custom class is loaded by Application class loader.
     
