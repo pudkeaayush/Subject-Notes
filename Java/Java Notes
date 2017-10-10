@@ -39,8 +39,8 @@ JVM consists of :
     as the Custom class is loaded by Application class loader.
     
 2. JVM Area : Includes
-    - Method Area : One Method Area per JVM
-    - Heap Area : One Heap Area per JVM
+    - Method Area : One Method Area per JVM. Stores class variables( static variables and static fields)
+    - Heap Area : One Heap Area per JVM. Stores objects
     - Stack area : Single stack corresponding to each thread.
     - PC Register : Stores address of thread. One per thread.
     - Native Method Stack : One per thread
@@ -65,7 +65,7 @@ Java is a statically typed language as opposed to say Python. Thus in Java we ha
 to it unlike in Python.
 
 By default fraction values are double in java. To use instead float, add f at the end.
-8 primitive data types in Java : boolean , byte , char , float , long , int , float , double
+8 primitive data types in Java : boolean , byte , char , float , long , int , short , double
 
 Enum stand for enumerated data types. 
 enum Color {
@@ -367,6 +367,8 @@ When we override equals method , always recommended to override hashCode() metho
 6. clone()
 7. notify()
 8. notifyAll()
+
+finally vs finalize : finally is a block. finalize is a method. finalize is called when an object is garbage collected. Eg: System.gc() will call finalize.
 
 Object class can be used to assign any data type( like in Python).
 Thus following are all valid :
