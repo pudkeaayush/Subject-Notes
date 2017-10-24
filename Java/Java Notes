@@ -612,6 +612,26 @@ synchronized(sync_object)
 Syncronization is achieved in Java using a concept of monitors. Only one thread can own a monitor at a time. All other threads
 attempting to enter the locked monitor will be suspended until the first thread exists the monitor.
 
+Recursive locking in java means the same thread can lock the same mutex object twice and won't deadlock.
+Solve the problem of non reentrancy.
+
+var m : Mutex  // A non-recursive mutex, initially unlocked.
+
+function lock_and_call(i : Integer)
+    m.lock()
+    callback(i)
+    m.unlock()
+
+function callback(i : Integer)
+    if i > 0
+        lock_and_call(i - 1)
+Given these definitions, the function call lock_and_call(1) will cause the following sequence of events:
+m.lock() — mutex locked
+callback(1)
+lock_and_call(0) — because i > 0
+m.lock() — deadlock, because m is already locked, so the executing thread will block, waiting for itself.
+Replacing the mutex with a recursive one solves the problem, because the final m.lock() will succeed without blocking.
+
 Inter thread communication
 ----------------------------------
 Polling : Process of checking repeatedly till a condition becomes true is called polling.
