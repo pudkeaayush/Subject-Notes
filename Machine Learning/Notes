@@ -1,0 +1,71 @@
+Regression : Predict continuous valued output vs Classification : Predict discrete valued output.
+
+Example of Regression problem : Predict house prices based on number of rooms, square feet and so on. There are many possibilities.
+Classification might be binary classification or multi class classification( finite number of classes).
+
+Linear Regression : Try to learn the parameters 'm' and 'c' in y = mx + c if only one feature. Else can learn more parameters( multivariate
+linear regression)
+
+Logistic Regression : Use logit function
+logit(p) = log(p / 1 - p) = log(p) - log( 1 - p)
+
+Instead of trying to fit a line, we might try fitting a cube , curve , quadratic( polynomial ). 
+We might overfit if we try to use really high order.
+
+Overfitting : Does well on training set, does not do so well on unseen(test) data.
+Addressing overfitting
+----------------------
+1. Reduce the number of features
+2. Regularization : Keep all the features but reduced magnitude of parameters. Works well when we have a lot of features 
+each of which contributes a bit to predicting y.
+This is because it averages all the overshooted predictions.
+
+Vector : n * 1 dimensional matrix
+matrix : genrally 2 dimensional
+tensor : generally n * n dimensional
+Tensor of rank 2 is matrix.
+
+Gradient descent : An iterative algorithm that tries to minimize given cost function.
+For instance, the cost function in linear regression is Sqaured error.
+
+Learning rate(alpha) is the size of the step(downhill) we taken while doing gradient descent. 
+If alpha is too small, gradient descent can be slow. If it is too large, it can overshoot the minimum or even diverge.
+
+Idea to put Gradient descent into practice
+-------------------------------------------
+1. Feature scaling : Make sure features are on the same scale. This makes gradient descent coverge much faster.
+2. Use small value of alpha. Else it might overshoot.
+
+Normal equation is an alternative to gradient descent in which we solve for theta analytically( no need to choose alpha).
+No need for iteration. However need to compute inverse of (X transpose * X).
+
+Ensemble methods: Use different models like KNN, Linear regression, SVM and average the prediction. 
+
+Boosting and bagging( Bootstrap aggregating) use the concept of ensembling but on the same algorithm.
+
+Bagging : Select m bags from the training data that contains around 60% of data randomly with replacement from the training data.
+Find the prediction from each model and then average the prediction.
+Boosting : Use bagging concept. Give higher weights to those not properly predicted. So they can be picked more likely in the next bag.
+
+Cross Validation : Split data into chunks and predict on one of the chunks.
+For instance the data can be divided into 4 parts.
+Then 1,2,3 can be used to predict 4. Check the results.
+2,3,4 can be used to predict 1. Check the results.
+3,4,1 can be used to predict 2. Check the results.
+4,1,2 can be used to predict 3. Check the results.
+Which ever has the lowest error is our model.
+
+K cross validation : Can take average of k chunks.
+
+MSE( Mean Squared Error) = Bias * Bias + Variance
+Bias : Error due to difference in prediction value - real value. 
+Variance : The error due to variance is the amount by which the prediction, over one training set, 
+differs from the expected predicted value, over all the training sets. 
+variance measures how inconsistent are the predictions from one another, over different training sets, not whether they are accurate or not.
+
+High bias                   -                          High variance
+1. Pays little attention to data              1. Pays too much attention to data( does not generalize well)
+2. Oversimplified                             2. Overfits
+3. Higher error on training set.              3. Much higher error on test data
+4. Few features used                          4. Many features used.
+
