@@ -14,3 +14,6 @@ CNNs : Feed forward networks
 RNNs : Can use their internal memory
 
 LSTMs solve vanishing or exploding gradient problems of RNNs by introducing gates.
+
+A recurrent neural network (RNN) is a class of artificial neural network where connections between units form a directed cycle. 
+This allows it to exhibit dynamic temporal behavior. Unlike feedforward neural networks, RNNs can use their internal memory to process arbitrary sequences of inputs. 
