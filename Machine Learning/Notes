@@ -19,6 +19,7 @@ Addressing overfitting
 2. Regularization : Keep all the features but reduced magnitude of parameters. Works well when we have a lot of features 
 each of which contributes a bit to predicting y.
 This is because it averages all the overshooted predictions.
+3. Use k fold Cross validation
 
 Vector : n * 1 dimensional matrix
 matrix : genrally 2 dimensional
@@ -68,4 +69,28 @@ High bias                   -                          High variance
 2. Oversimplified                             2. Overfits
 3. Higher error on training set.              3. Much higher error on test data
 4. Few features used                          4. Many features used.
+
+KNN vs KMeans
+KNN needs labeled points and is thus supervised learning, while k-means doesn’t — and is thus unsupervised learning.
+
+ROC curve : Graph between True positives vs False positives
+
+Bayes Theorem : Bayes’ Theorem gives you the posterior probability of an event given what is known as prior knowledge.
+Naive Bayes is "naive" because it considers conditional independence of features, which is impossible to find in real life.
+Eg: A Naive Bayes classifier that figured out that you liked pickles and ice cream would probably naively recommend you a pickle ice cream.
+
+L1 regularization vs L2 regularization
+-------------------------------------------
+L1 regularization - take only |W|
+L2 regularization - take |W| * |W|
+L2 regularization tends to spread error among all the terms, while L1 is more binary/sparse, with many variables either being assigned a 1 or 0 in weighting
+
+Type 1 erorr : False positive
+Type 2 error : False negative
+
+Fourier Transform : Time to frequency domain
+
+Generative vs Discriminative models:
+A generative model will learn categories of data while a discriminative model will simply learn the distinction between different 
+categories of data. Discriminative models will generally outperform generative models on classification tasks.
 
