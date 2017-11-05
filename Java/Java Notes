@@ -218,6 +218,10 @@ Superclass reference variable can be used to refer to subclass.
 Example if A is the superclass and B extends A then,
 A a = new B() can be used to call B's method.
 
+Low Coupling and High cohesion : Cohesion means that a class/method is specific in what it does. Cohesion refers to what the class (or module) can do.
+Coupling refers to the fact that chaning something in one method should not affect another class.
+
+
 Association vs Composition vs Aggregation
 -------------------------------------------
 Association : Relationship between 2 different classes established through their objects.
