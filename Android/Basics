@@ -286,4 +286,15 @@ queue, all queued intents are handled.
 The Service runs in background but it runs on the Main Thread of the application.
 The IntentService runs on a separate worker thread
 
+IPC mechanisms in Android include:
+Intents (with Bundles included)
+Binders or Messengers with a Service
+BroadcastReceivers
+Since android is meant for embedded and small devices, we should not use serialization for IPC, rather we can use BINDERs 
+which internally uses parcels. Parcel is a sort of light weight serialization by using shared memory concept.
+To pass data between activities, services, and receivers use only Bundles. Don't go for either serialization or binders. 
+Binders are specifically used only for binder services where 2 processes will communicate.
+
+AIDL (Android Interface Definition Language) is similar to other IDLs you might have worked with. It allows you to define the 
+programming interface that both the client and service agree upon in order to communicate with each other using interprocess communication (IPC).
 
