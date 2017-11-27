@@ -402,3 +402,44 @@ For these reasons, using AsyncTasks for long-running background tasks is general
 Intent Filter : Specifies the types of intents that an activity, service, or broadcast receiver can respond to. An intent filter declares the capabilities of its parent component — what an activity or service can do 
 and what types of broadcasts a receiver can handle
 
+Android restarts the mainactivity on orientation change. I've seen that you can override the method
+protected void onSaveInstanceState(Bundle outState)
+To save stuff, then have the in onStart.
+
+View.GONE vs View.INVISIBLE
+INVISIBLE: This view is invisible, but it still takes up space for layout purposes.
+GONE: This view is invisible, and it doesn't take any space for layout purposes.
+
+9 patch image android: Create bitmap images that automatically resize to accommodate the contents of the view and the size of the screen. Eg: button or textview
+
+Memory Leaks in Android : Holding reference to other objects
+Caused by :
+1. Holding reference of UI specific object in background
+2. Using static views
+3. Using static context
+4. Not Saying goodbye to listeners after being served
+
+Doze : Doze helps solve battery drainage problem by periodically blocking wakelocks and shutting off network access if your 
+phone goes unused for a while.
+
+AAPT : Android Asset Packaging Tool : Allows you to view, create, and update Zip-compatible archives (zip, jar, apk). 
+It can also compile resources into binary assets. It is the base builder for Android aplications
+
+LINT : Helps to detect the structural quality of one's code.
+
+A SurfaceView is a custom view in Android that can be used to drawn inside it.
+The main difference between a View and a SurfaceView is that a View is drawn in the UI Thread, which is used for all the user interaction.
+If you want to update the UI rapidly enough and render a good amount of information in it, a SurfaceView is a better choice. 
+But there are a few technical insides to the SurfaceView: 
+1. They are not hardware accelerated.
+2. Normal views are rendered when you call the methods invalidate or postInvalidate(), but this does not mean the view will be immediately updated (A VSYNC will be sent, and the OS decides when it gets updated. The SurfaceView can be immediately updated.
+3. A SurfaceView has an allocated surface buffer, so it is more costly.
+
+One of the main differences between surfaceview and view is that to refresh the screen for a normal view we have to call invalidate 
+method from the same thread where the view is defined. But even if we call invalidate, the refreshing does not happen immediately. 
+It occurs only after the next arrival of the VSYNC signal. VSYNC signal is a kernel generated signal which happens every 16.6 ms or 
+this is also known as 60 frame per second. So if we want more control over the refreshing of the screen (for example for very fast 
+moving animation), we should not use normal view class.
+On the other hand in case of surfaceview, we can refresh the screen as fast as we want and we can do it from a background thread. 
+So refreshing of the surfaceview really does not depend upon VSYNC, and this is very useful if we want to do high speed animation.
+
