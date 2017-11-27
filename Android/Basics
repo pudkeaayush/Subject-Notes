@@ -320,3 +320,72 @@ A layout manager positions item views inside a RecyclerView and determines when 
 user. To reuse (or recycle) a view, a layout manager may ask the adapter to replace the contents of the view with a different element 
 from the dataset. Recycling views in this manner improves performance by avoiding the creation of unnecessary views or performing expensive findViewById() lookups
 
+Communication between two fragments: All Fragment-to-Fragment communication is done through the associated Activity. 
+To allow a Fragment to communicate up to its Activity, you can define an interface in the Fragment class and implement it within the 
+Activity. The Fragment captures the interface implementation during its onAttach() lifecycle method and can then call the Interface 
+methods in order to communicate with the Activity.
+
+Notification : A notification is a message you display to the user outside of your app's normal UI.
+Interacting with Other Apps is done through intents in Android.
+
+Why is it recommended to use only the default constructor to create a fragment?
+It seems like none of the answers actually answer "why use bundle for passing parameters rather than non default constructors"
+The reason why you should be passing parameters through bundle is because when the system restores a fragment (e.g on config change),
+it will automatically restore your bundle.The callbacks like onCreate or onCreateView should read the parameters from the bundle - 
+this way you are guaranteed to restore the state of the fragment correctly to the same state the fragment was initialised with
+(note this state can be different from the onSaveInstanceState bundle that is passed to the onCreate/onCreateView)
+
+Dialog : A dialog is a small window that prompts the user to make a decision or enter additional information. 
+View : A View occupies a rectangular area on the screen and is responsible for drawing and event handling. View is the base 
+class for widgets, which are used to create interactive UI components (buttons, text fields, etc.). The ViewGroup subclass 
+is the base class for layouts, which are invisible containers that hold other Views (or other ViewGroups) and define their 
+layout properties.
+
+ViewGroup : A ViewGroup is a special view that can contain other views (called children.) The view group is the base class for layouts and views containers.
+An example of such a view is the RadioGroup, which is intended to contain multiple RadioButton objects such that only one can be 
+in the “on” position at any one time
+
+Android Layout Views:
+1. LinearLayout
+2. TableLayout
+3. FrameLayout
+4. RelativeLayout
+5. AbsoluteLayout
+6. GridLayout
+
+Serialization vs Parceable:
+Parcelable is an Android specific interface where you implement the serialization yourself. It was created to be far more 
+efficient that Serializable, and to get around some problems with the default Java serialization scheme.
+
+Android provides two mechanisms that allow you to pass data to another process. The first is to pass a bundle to an activity 
+using an intent, and the second is to pass a Parcelable to a service. These two mechanisms are not interchangeable and should 
+not be confused. That is, the Parcelable is not meant to be passed to an activity. If you want to start an activity and pass it 
+some data, use a bundle. Parcelable is meant to be used only as part of an AIDL definition.
+
+BroadcastReceiver : A broadcast receiver is a component that responds to system-wide broadcast announcements. Many broadcasts 
+originate from the system—for example, a broadcast announcing that the screen has turned off, the battery is low, or a picture was 
+captured. Applications can also initiate broadcasts—for example, to let other applications know that some data has been downloaded 
+to the device and is available for them to use. Although broadcast receivers don't display a user interface, they may create a status 
+bar notification to alert the user when a broadcast event occurs. More commonly, though, a broadcast receiver is just a "gateway" to 
+other components and is intended to do a very minimal amount of work. For instance, it might initiate a service to perform some work 
+based on the event.
+
+LocalBroadCastManager 
+-------------------------
+Helper to register for and send broadcasts of Intents to local objects within your process. This has a number of advantages over sending global broadcasts with sendBroadcast(Intent):
+
+You know that the data you are broadcasting won't leave your app, so don't need to worry about leaking private data.
+It is not possible for other applications to send these broadcasts to your app, so you don't need to worry about having security holes they can exploit.
+It is more efficient than sending a global broadcast through the system.
+
+The AlarmManager(outdated) and JobScheduler are two tasks that are used for scheduling tasks in Android.
+
+Glide Library : For most cases, we recommend that you use the Glide library to fetch, decode, and display bitmaps in your app.
+
+What are different ways to store data in your Android app?
+1. SharedPreferences : Store private primitive data in key-value pairs.
+2. Internal Storage : Store private data on the device memory
+3. External Storage : Store public data on the shared external storage
+4. SQLite : Store structured data in a private database.
+5. Network Connection : Store data on the web with your own network server.
+
