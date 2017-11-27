@@ -298,3 +298,25 @@ Binders are specifically used only for binder services where 2 processes will co
 AIDL (Android Interface Definition Language) is similar to other IDLs you might have worked with. It allows you to define the 
 programming interface that both the client and service agree upon in order to communicate with each other using interprocess communication (IPC).
 
+Major Android components:
+1. Activity 2. Service 3. BroadcastReceiver 4. Content Provider
+Others: Views, Layouts, Fragments, Intents, Resources, Manifest
+
+Service vs IntentService :
+The Service runs in background but it runs on the Main Thread of the application.
+The IntentService runs on a separate worker thread.
+Service needs to be stopped by self whereas The IntentService stops the service after all start requests have been handled, so you never have to call stopSelf().
+
+The three primary features of an IntentService are:
+1. the background thread
+2. the automatic queuing of Intents delivered to onStartCommand(), so if one Intent is being processed by onHandleIntent() on the background thread, other commands queue up waiting their turn
+3. the automatic shutdown of the IntentService, via a call to stopSelf(), once the queue is empty
+
+RecycleView : The RecyclerView widget is a more advanced and flexible version of ListView. This widget is a container for displaying 
+large data sets that can be scrolled very efficiently by maintaining a limited number of views. Use the RecyclerView widget when you 
+have data collections whose elements change at runtime based on user action or network events.
+
+A layout manager positions item views inside a RecyclerView and determines when to reuse item views that are no longer visible to the 
+user. To reuse (or recycle) a view, a layout manager may ask the adapter to replace the contents of the view with a different element 
+from the dataset. Recycling views in this manner improves performance by avoiding the creation of unnecessary views or performing expensive findViewById() lookups
+
