@@ -389,3 +389,16 @@ What are different ways to store data in your Android app?
 4. SQLite : Store structured data in a private database.
 5. Network Connection : Store data on the web with your own network server.
 
+Dalvik Virtual Machine vs JVM : All apk's basic source code is in java language . When you build this project all .java files get converted 
+to .class now the dx tool of adk converts all .class files to classes.dex file .And this classes.dex file is executed on dalvik 
+virtual machine. Dalvik virtual machine is intended to run multiple VMs at a time . So every app runs in its own process, with its own 
+instance of the Dalvik virtual machine.
+
+An Asynctask doesn't depend on Activity life-cycle that contains it. Like if we start an AsyncTask inside an Activity and then we rotates the device, the Activity will be destroyed at that point but the AsyncTask will remain same or not die until it completes.
+Then, when the AsyncTask complete its background work its directly updates Activity ui without creating new instance of activity or without affecting activity lifecycle.
+Theres also the potential for this to result in a memory leak since the AsyncTask maintains a reference to the Activty, which prevents the Activity from being garbage collected as long as the AsyncTask remains alive.
+For these reasons, using AsyncTasks for long-running background tasks is generally a bad idea . Rather, for long-running background tasks, a different mechanism like service or intent service should be used.
+
+Intent Filter : Specifies the types of intents that an activity, service, or broadcast receiver can respond to. An intent filter declares the capabilities of its parent component — what an activity or service can do 
+and what types of broadcasts a receiver can handle
+
