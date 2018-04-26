@@ -94,6 +94,10 @@ on the UI thread without having to manipulate threads and/or handlers.
 AsyncTasks should ideally be used for short operations (a few seconds at the most.) If you need to keep threads running for long 
 periods of time, it is highly recommended you use the various APIs provided by the java.util.concurrent package such as Executor, ThreadPoolExecutor and FutureTask.
 
+Handler : A Handler allows you to send and process Message and Runnable objects associated with a thread's MessageQueue. 
+Each Handler instance is associated with a single thread and that thread's message queue. When you create a new Handler, 
+it is bound to the thread / message queue of the thread that is creating it -- from that point on, it will deliver messages 
+and runnables to that message queue and execute them as they come out of the message queue.
 There are two main uses for a Handler: 
 (1) to schedule messages and runnables to be executed as some point in the future; and 
 (2) to enqueue an action to be performed on a different thread than your own.
@@ -101,6 +105,12 @@ There are two main uses for a Handler:
 Service vs Asyntask
 ---------------------
 In short, Service for time consuming tasks, AsyncTask for short-lived tasks
+
+Service : A Service is an application component that can perform long-running operations in the background and does not 
+provide a user interface. Another application component can start a service and it will continue to run in the background 
+even if the user switches to another application. Additionally, a component can bind to a service to interact with it and 
+even perform interprocess communication (IPC). For example, a service might handle network transactions, play music, 
+perform file I/O, or interact with a content provider, all from the background.
 
 WebViews
 -----------
